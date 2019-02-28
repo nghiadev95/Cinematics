@@ -1,0 +1,25 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.0'
+
+target 'Moviek' do
+  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  use_frameworks!
+
+  # Pods for Moviek
+  pod 'RxSwift'
+  pod 'RxCocoa'
+  pod 'Alamofire'
+  pod 'ObjectMapper'
+  pod 'CocoaLumberjack/Swift'
+  pod 'DeviceKit'
+  pod 'Kingfisher'
+  pod 'SnapKit'
+  pod 'SwiftDate'
+  pod 'Then'
+  pod 'Action'
+  pod 'MBProgressHUD'
+  pod 'LGButton'
+  # pod 'SwiftLint'
+  pod 'R.swift'
+
+end

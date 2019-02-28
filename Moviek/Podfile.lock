@@ -1,0 +1,81 @@
+PODS:
+  - Action (3.10.0):
+    - RxCocoa (~> 4.3)
+    - RxSwift (~> 4.3)
+  - Alamofire (4.8.1)
+  - CocoaLumberjack/Core (3.5.1)
+  - CocoaLumberjack/Swift (3.5.1):
+    - CocoaLumberjack/Core
+  - DeviceKit (1.11.0)
+  - Kingfisher (5.1.1)
+  - LGButton (1.1.4)
+  - MBProgressHUD (1.1.0)
+  - ObjectMapper (3.4.2)
+  - R.swift (5.0.2):
+    - R.swift.Library (~> 5.0.0)
+  - R.swift.Library (5.0.0)
+  - RxAtomic (4.4.1)
+  - RxCocoa (4.4.1):
+    - RxSwift (~> 4.0)
+  - RxSwift (4.4.1):
+    - RxAtomic (~> 4.4)
+  - SnapKit (4.2.0)
+  - SwiftDate (5.1.0)
+  - Then (2.4.0)
+
+DEPENDENCIES:
+  - Action
+  - Alamofire
+  - CocoaLumberjack/Swift
+  - DeviceKit
+  - Kingfisher
+  - LGButton
+  - MBProgressHUD
+  - ObjectMapper
+  - R.swift
+  - RxCocoa
+  - RxSwift
+  - SnapKit
+  - SwiftDate
+  - Then
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Action
+    - Alamofire
+    - CocoaLumberjack
+    - DeviceKit
+    - Kingfisher
+    - LGButton
+    - MBProgressHUD
+    - ObjectMapper
+    - R.swift
+    - R.swift.Library
+    - RxAtomic
+    - RxCocoa
+    - RxSwift
+    - SnapKit
+    - SwiftDate
+    - Then
+
+SPEC CHECKSUMS:
+  Action: 24de4abf6efecd239fa7d8e923df010a12f153d9
+  Alamofire: 16ce2c353fb72865124ddae8a57c5942388f4f11
+  CocoaLumberjack: 2101f8a5508197a305e737d16c5c2e9e2157628c
+  DeviceKit: a3a86f8dddbe1317a9a243cdf9646858bf135dce
+  Kingfisher: 2558186963e5be42d98c5b110ccb3130148b77e4
+  LGButton: a2fab54642121da2bee2e5f16bfbb57a8c05c788
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  ObjectMapper: 0d4402610f4e468903ae64629eec4784531e5c51
+  R.swift: 81455d81467763cbd3f4d79d938d05f4ac4c0228
+  R.swift.Library: 0bf390e729bc10bb2c9e4fb78bd043164a7be4ff
+  RxAtomic: f8d6adc1ccb87a767811269e4875887bc74dbf19
+  RxCocoa: 2f35a76bf8887872e28a1914112395b11b8e0e64
+  RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
+  SwiftDate: 6329e58969a2de31cea7f1ee1143b247693196e7
+  Then: 71866660c7af35a7343831f7668e7cd2b62ee0f2
+
+PODFILE CHECKSUM: 8087635b13be10d5ee93e3bf6d6bbfd6c4976371
+
+COCOAPODS: 1.5.3
