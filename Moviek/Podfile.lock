@@ -21,6 +21,7 @@ PODS:
     - RxAtomic (~> 4.4)
   - SnapKit (4.2.0)
   - SwiftDate (5.1.0)
+  - SwiftLint (0.30.1)
   - Then (2.4.0)
 
 DEPENDENCIES:
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - RxSwift
   - SnapKit
   - SwiftDate
+  - SwiftLint
   - Then
 
 SPEC REPOS:
@@ -56,6 +58,7 @@ SPEC REPOS:
     - RxSwift
     - SnapKit
     - SwiftDate
+    - SwiftLint
     - Then
 
 SPEC CHECKSUMS:
@@ -74,8 +77,9 @@ SPEC CHECKSUMS:
   RxSwift: 92fcf68dfef21f3e2ab1965363d9e7b3d787597e
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   SwiftDate: 6329e58969a2de31cea7f1ee1143b247693196e7
+  SwiftLint: a54bf1fe12b55c68560eb2a7689dfc81458508f7
   Then: 71866660c7af35a7343831f7668e7cd2b62ee0f2
 
-PODFILE CHECKSUM: 8087635b13be10d5ee93e3bf6d6bbfd6c4976371
+PODFILE CHECKSUM: 91667f0fae9d087cfa22f0cb3b02cb893297d1a2
 
 COCOAPODS: 1.5.3

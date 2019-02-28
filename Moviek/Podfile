@@ -19,7 +19,7 @@ target 'Moviek' do
   pod 'Action'
   pod 'MBProgressHUD'
   pod 'LGButton'
-  # pod 'SwiftLint'
+  pod 'SwiftLint'
   pod 'R.swift'
 
 end

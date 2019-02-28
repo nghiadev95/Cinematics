@@ -115,11 +115,12 @@
 			buildConfigurationList = 420056EA222822F900975B14 /* Build configuration list for PBXNativeTarget "Moviek" */;
 			buildPhases = (
 				76ACD9B1422CAB1D13EC351A /* [CP] Check Pods Manifest.lock */,
-				420056EE2228489800975B14 /* ShellScript */,
+				420056EE2228489800975B14 /* Run Script - R.swift */,
 				420056D4222822F700975B14 /* Sources */,
 				420056D5222822F700975B14 /* Frameworks */,
 				420056D6222822F700975B14 /* Resources */,
 				51CF7BC2383DC47674EDAD33 /* [CP] Embed Pods Frameworks */,
+				420056F322284B0E00975B14 /* Run Script - Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -177,7 +178,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		420056EE2228489800975B14 /* ShellScript */ = {
+		420056EE2228489800975B14 /* Run Script - R.swift */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -187,6 +188,7 @@
 			inputPaths = (
 				"$TEMP_DIR/rswift-lastrun",
 			);
+			name = "Run Script - R.swift";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -195,6 +197,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"$PODS_ROOT/R.swift/rswift\" generate \"$SRCROOT/R.generated.swift\"\n";
+		};
+		420056F322284B0E00975B14 /* Run Script - Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Run Script - Swiftlint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "${PODS_ROOT}/SwiftLint/swiftlint\n";
 		};
 		51CF7BC2383DC47674EDAD33 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
