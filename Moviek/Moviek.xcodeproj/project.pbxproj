@@ -57,7 +57,6 @@
 		42139CA9222981560038840C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 420056DF222822F700975B14 /* Main.storyboard */; };
 		42139CB4222982AC0038840C /* Info-Debug.plist in Resources */ = {isa = PBXBuildFile; fileRef = 42139CB3222982AC0038840C /* Info-Debug.plist */; };
 		42139CB5222983060038840C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 42139C73222979FF0038840C /* GoogleService-Info.plist */; };
-		42139CB6222983120038840C /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 420056E7222822F900975B14 /* Info.plist */; };
 		42139CC0222986FD0038840C /* Provider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42139C54222970750038840C /* Provider.swift */; };
 		42139CC1222986FD0038840C /* UserAPIs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42139C5A222971250038840C /* UserAPIs.swift */; };
 		42139CC2222986FD0038840C /* Networking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42139C56222970920038840C /* Networking.swift */; };
@@ -87,10 +86,14 @@
 		42139CEA22298E490038840C /* AppDelegate+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42139CE922298E490038840C /* AppDelegate+Ext.swift */; };
 		42139CEB22298E490038840C /* AppDelegate+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42139CE922298E490038840C /* AppDelegate+Ext.swift */; };
 		42139CEC22298E490038840C /* AppDelegate+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42139CE922298E490038840C /* AppDelegate+Ext.swift */; };
+		5B859CD3566A1422E5AFB44A /* Pods_Moviek_Staging.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 17D06E3024FB12B927A46341 /* Pods_Moviek_Staging.framework */; };
 		9680EF35DE2A632F777EE231 /* Pods_Moviek.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 70F4674414BDAD7F3D6FBFDA /* Pods_Moviek.framework */; };
+		B1C63D6F8DC2B7307CB89279 /* Pods_Moviek_Debug.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC7EF50665A45F4E91D5370D /* Pods_Moviek_Debug.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		00DEBDD4AC9CDE75EDD5A845 /* Pods-Moviek Debug.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moviek Debug.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Moviek Debug/Pods-Moviek Debug.staging.xcconfig"; sourceTree = "<group>"; };
+		17D06E3024FB12B927A46341 /* Pods_Moviek_Staging.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moviek_Staging.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		420056D8222822F700975B14 /* Moviek Debug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Moviek Debug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		420056DB222822F700975B14 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		420056DD222822F700975B14 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -124,9 +127,16 @@
 		42139CBA222986EE0038840C /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		42139CE3222986FD0038840C /* Moviek Staging.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Moviek Staging.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42139CE922298E490038840C /* AppDelegate+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Ext.swift"; sourceTree = "<group>"; };
+		4ED8F0D07858313EF1EAE602 /* Pods-Moviek Staging.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moviek Staging.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Moviek Staging/Pods-Moviek Staging.staging.xcconfig"; sourceTree = "<group>"; };
 		4EF5D9EAB60089453185C326 /* Pods-Moviek.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moviek.release.xcconfig"; path = "Pods/Target Support Files/Pods-Moviek/Pods-Moviek.release.xcconfig"; sourceTree = "<group>"; };
+		6433A869AF8504611026E53D /* Pods-Moviek Debug.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moviek Debug.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Moviek Debug/Pods-Moviek Debug.debug.xcconfig"; sourceTree = "<group>"; };
+		6E7BE8201B80053F329CD2D1 /* Pods-Moviek Staging.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moviek Staging.release.xcconfig"; path = "Pods/Target Support Files/Pods-Moviek Staging/Pods-Moviek Staging.release.xcconfig"; sourceTree = "<group>"; };
+		6E85D01998933F12E1F0DDA7 /* Pods-Moviek Debug.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moviek Debug.release.xcconfig"; path = "Pods/Target Support Files/Pods-Moviek Debug/Pods-Moviek Debug.release.xcconfig"; sourceTree = "<group>"; };
 		70F4674414BDAD7F3D6FBFDA /* Pods_Moviek.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moviek.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A14A29AD62C7D1FCD448D4DF /* Pods-Moviek.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moviek.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Moviek/Pods-Moviek.debug.xcconfig"; sourceTree = "<group>"; };
+		B98F440F930FE8726A6AA018 /* Pods-Moviek Staging.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moviek Staging.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Moviek Staging/Pods-Moviek Staging.debug.xcconfig"; sourceTree = "<group>"; };
+		F8AB1BB1ABAEEA55C8689E52 /* Pods-Moviek.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Moviek.staging.xcconfig"; path = "Pods/Target Support Files/Pods-Moviek/Pods-Moviek.staging.xcconfig"; sourceTree = "<group>"; };
+		FC7EF50665A45F4E91D5370D /* Pods_Moviek_Debug.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Moviek_Debug.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -135,6 +145,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9680EF35DE2A632F777EE231 /* Pods_Moviek.framework in Frameworks */,
+				B1C63D6F8DC2B7307CB89279 /* Pods_Moviek_Debug.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,6 +162,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				42139CD5222986FD0038840C /* Pods_Moviek.framework in Frameworks */,
+				5B859CD3566A1422E5AFB44A /* Pods_Moviek_Staging.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,6 +173,8 @@
 			isa = PBXGroup;
 			children = (
 				70F4674414BDAD7F3D6FBFDA /* Pods_Moviek.framework */,
+				FC7EF50665A45F4E91D5370D /* Pods_Moviek_Debug.framework */,
+				17D06E3024FB12B927A46341 /* Pods_Moviek_Staging.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -403,6 +417,13 @@
 			children = (
 				A14A29AD62C7D1FCD448D4DF /* Pods-Moviek.debug.xcconfig */,
 				4EF5D9EAB60089453185C326 /* Pods-Moviek.release.xcconfig */,
+				F8AB1BB1ABAEEA55C8689E52 /* Pods-Moviek.staging.xcconfig */,
+				6433A869AF8504611026E53D /* Pods-Moviek Debug.debug.xcconfig */,
+				00DEBDD4AC9CDE75EDD5A845 /* Pods-Moviek Debug.staging.xcconfig */,
+				6E85D01998933F12E1F0DDA7 /* Pods-Moviek Debug.release.xcconfig */,
+				B98F440F930FE8726A6AA018 /* Pods-Moviek Staging.debug.xcconfig */,
+				4ED8F0D07858313EF1EAE602 /* Pods-Moviek Staging.staging.xcconfig */,
+				6E7BE8201B80053F329CD2D1 /* Pods-Moviek Staging.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -528,7 +549,6 @@
 				42139CA5222981560038840C /* LaunchScreen.storyboard in Resources */,
 				42139CA6222981560038840C /* GoogleService-Info.plist in Resources */,
 				42139CA8222981560038840C /* Assets.xcassets in Resources */,
-				42139CB6222983120038840C /* Info.plist in Resources */,
 				42139CA9222981560038840C /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -711,7 +731,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Moviek-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Moviek Staging-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -746,7 +766,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Moviek/Pods-Moviek-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Moviek Staging/Pods-Moviek Staging-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
@@ -785,7 +805,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Moviek/Pods-Moviek-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Moviek Staging/Pods-Moviek Staging-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		42139CDF222986FD0038840C /* Run Script - Swiftlint */ = {
@@ -814,7 +834,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Moviek/Pods-Moviek-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-Moviek Debug/Pods-Moviek Debug-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Action/Action.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
@@ -853,7 +873,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Moviek/Pods-Moviek-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Moviek Debug/Pods-Moviek Debug-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		76ACD9B1422CAB1D13EC351A /* [CP] Check Pods Manifest.lock */ = {
@@ -871,7 +891,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Moviek-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Moviek Debug-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1105,7 +1125,7 @@
 		};
 		420056EB222822F900975B14 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A14A29AD62C7D1FCD448D4DF /* Pods-Moviek.debug.xcconfig */;
+			baseConfigurationReference = 6433A869AF8504611026E53D /* Pods-Moviek Debug.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -1125,7 +1145,7 @@
 		};
 		420056EC222822F900975B14 /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EF5D9EAB60089453185C326 /* Pods-Moviek.release.xcconfig */;
+			baseConfigurationReference = 00DEBDD4AC9CDE75EDD5A845 /* Pods-Moviek Debug.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -1165,7 +1185,7 @@
 		};
 		42139CAF222981560038840C /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EF5D9EAB60089453185C326 /* Pods-Moviek.release.xcconfig */;
+			baseConfigurationReference = F8AB1BB1ABAEEA55C8689E52 /* Pods-Moviek.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -1185,7 +1205,7 @@
 		};
 		42139CE1222986FD0038840C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A14A29AD62C7D1FCD448D4DF /* Pods-Moviek.debug.xcconfig */;
+			baseConfigurationReference = B98F440F930FE8726A6AA018 /* Pods-Moviek Staging.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -1205,7 +1225,7 @@
 		};
 		42139CE2222986FD0038840C /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EF5D9EAB60089453185C326 /* Pods-Moviek.release.xcconfig */;
+			baseConfigurationReference = 4ED8F0D07858313EF1EAE602 /* Pods-Moviek Staging.staging.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -1280,7 +1300,7 @@
 		};
 		42139CE6222988420038840C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EF5D9EAB60089453185C326 /* Pods-Moviek.release.xcconfig */;
+			baseConfigurationReference = 6E85D01998933F12E1F0DDA7 /* Pods-Moviek Debug.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
@@ -1300,7 +1320,7 @@
 		};
 		42139CE7222988420038840C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4EF5D9EAB60089453185C326 /* Pods-Moviek.release.xcconfig */;
+			baseConfigurationReference = 6E7BE8201B80053F329CD2D1 /* Pods-Moviek Staging.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
