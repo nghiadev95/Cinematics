@@ -1,5 +1,5 @@
 //
-//  APIConfiguration.swift
+//  TargetType.swift
 //  Cinematics
 //
 //  Created by Nghia Nguyen on 4/7/20.
@@ -9,7 +9,9 @@
 import Alamofire
 import Foundation
 
-protocol APIConfiguration: URLRequestConvertible {
+public typealias HTTPMethod = Alamofire.HTTPMethod
+
+protocol TargetType {
     /// The target's base `URL`.
     var baseURL: URL { get }
 
@@ -25,34 +27,16 @@ protocol APIConfiguration: URLRequestConvertible {
     /// The headers to be used in the request.
     var headers: [String: String]? { get }
     
-    func createTask(request: URLRequest) throws -> URLRequest
+    /// The type of HTTP task to be performed.
+    var task: Task { get }
 }
 
-extension APIConfiguration {
+extension TargetType {
     var validationType: ValidationType {
         return .none
     }
 
     var headers: [String: String]? {
         return nil
-    }
-    
-    func asURLRequest() throws -> URLRequest {
-        let url = baseURL.appendingPathComponent(path)
-        var request = URLRequest(url: url)
-        request.method = method
-        request = try createTask(request: request)
-        
-        
-        
-        return request
-    }
-    
-    func defaultURLEncodedFormParameterEncoder() -> URLEncodedFormParameterEncoder {
-        return URLEncodedFormParameterEncoder.default
-    }
-    
-    func defaultJSONParameterEncoder() -> JSONParameterEncoder {
-        return JSONParameterEncoder.default
     }
 }

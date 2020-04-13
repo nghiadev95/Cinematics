@@ -11,32 +11,33 @@ import Foundation
 import RxSwift
 
 protocol Networking {
-    var defaultDecoder: JSONDecoder { get }
-    func request<H: Codable, T: APIConfiguration>(endpoint: T, model: H.Type) -> Observable<H>
+    func request<T: TargetType, H: Codable>(targetType: T, model: H.Type) -> Observable<H>
 }
 
 struct Network: Networking {
-    private let errorReporter: ErrorReportable
+    private let errorReporter: ErrorReportable?
     private var section: Session
+    private let decoder: JSONDecoder
     
-    init(reporter: ErrorReportable) {
+    init(decoder: JSONDecoder = JSONDecoder(), reporter: ErrorReportable? = nil) {
+        self.decoder = decoder
         self.errorReporter = reporter
         section = Session(interceptor: Interceptor(adapters: [APIKeyAdapter()], retriers: []))
     }
-    
-    var defaultDecoder: JSONDecoder {
-        return JSONDecoder()
-    }
 
-    func request<H, T>(endpoint: T, model: H.Type) -> Observable<H> where H: Codable, T: APIConfiguration {
+    func request<T, H>(targetType: T, model: H.Type) -> Observable<H> where T: TargetType, H: Codable {
         return Observable<H>.create { (observer) -> Disposable in
-            let request = self.section.request(endpoint).validate(statusCode: endpoint.validationType.statusCodes).responseDecodable(of: H.self, decoder: self.defaultDecoder) { response in
+            let endPoint = Endpoint(targetType: targetType)
+            let validationStatusCodes = endPoint.targetType.validationType.statusCodes
+            let request = self.section.request(endPoint)
+                .validate(statusCode: validationStatusCodes)
+                .responseDecodable(of: H.self, decoder: self.decoder) { response in
                 switch response.result {
                 case .success(let resultObject):
                     observer.onNext(resultObject)
                     observer.onCompleted()
                 case .failure(let error):
-                    observer.onError(self.errorResolver(endpoint: endpoint, error: error))
+                    observer.onError(self.errorResolver(targetType: targetType, error: error))
                 }
             }
             return Disposables.create {
@@ -47,14 +48,14 @@ struct Network: Networking {
         }
     }
 
-    func errorResolver(endpoint: APIConfiguration, error: Error) -> NetworkError {
+    func errorResolver(targetType: TargetType, error: Error) -> NetworkError {
         log.debug(error)
-        errorReporter.report(error: error)
+        errorReporter?.report(error: error)
         if let afError = error as? AFError {
             log.debug(afError)//remove
-            return NetworkError.defaultInstance()
+            return NetworkError.default
         } else {
-            return NetworkError.defaultInstance()
+            return NetworkError.default
         }
         
     }
