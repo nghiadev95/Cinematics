@@ -11,12 +11,39 @@
         }
       },
       {
+        "package": "RxSwift",
+        "repositoryURL": "https://github.com/ReactiveX/RxSwift",
+        "state": {
+          "branch": null,
+          "revision": "002d325b0bdee94e7882e1114af5ff4fe1e96afa",
+          "version": "5.1.1"
+        }
+      },
+      {
+        "package": "SnapKit",
+        "repositoryURL": "https://github.com/SnapKit/SnapKit",
+        "state": {
+          "branch": null,
+          "revision": "d458564516e5676af9c70b4f4b2a9178294f1bc6",
+          "version": "5.0.1"
+        }
+      },
+      {
         "package": "SwiftyBeaver",
         "repositoryURL": "https://github.com/SwiftyBeaver/SwiftyBeaver",
         "state": {
           "branch": null,
           "revision": "97477264cd683a387e80fc2f9b0f0e8db8070ed2",
           "version": "1.9.0"
+        }
+      },
+      {
+        "package": "Then",
+        "repositoryURL": "https://github.com/devxoul/Then",
+        "state": {
+          "branch": null,
+          "revision": "6792b283705e65385a203ed5793fa269bc1221bf",
+          "version": "2.6.0"
         }
       }
     ]

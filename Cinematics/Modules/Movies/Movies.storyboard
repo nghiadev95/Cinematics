@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Movies View Controller-->
+        <scene sceneID="XJ1-QA-Nrj">
+            <objects>
+                <viewController storyboardIdentifier="MoviesViewController" id="zIc-eW-6fX" customClass="MoviesViewController" customModule="Cinematics" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Z2g-4m-atm">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="0On-yQ-UeK">
+                                <rect key="frame" x="0.0" y="69" width="375" height="709"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="etv-5e-qep">
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                        <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MOVIES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nIA-x5-EMY">
+                                                <rect key="frame" x="20" y="10.666666666666673" width="92" height="28.666666666666671"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
+                                                <color key="textColor" name="C212121"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FRI-pX-W4o">
+                                                <rect key="frame" x="305" y="0.0" width="50" height="50"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" secondItem="FRI-pX-W4o" secondAttribute="height" multiplier="1:1" id="InV-1G-BtZ"/>
+                                                </constraints>
+                                                <state key="normal" image="search_icon"/>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="nIA-x5-EMY" firstAttribute="leading" secondItem="etv-5e-qep" secondAttribute="leading" constant="20" id="5WS-J0-Ufr"/>
+                                            <constraint firstAttribute="bottom" secondItem="FRI-pX-W4o" secondAttribute="bottom" id="7KZ-kB-3Ar"/>
+                                            <constraint firstAttribute="height" constant="50" id="C8W-Qk-pxb"/>
+                                            <constraint firstAttribute="trailing" secondItem="FRI-pX-W4o" secondAttribute="trailing" constant="20" id="E5D-6Z-evo"/>
+                                            <constraint firstItem="FRI-pX-W4o" firstAttribute="top" secondItem="etv-5e-qep" secondAttribute="top" id="bcX-bE-MFV"/>
+                                            <constraint firstItem="nIA-x5-EMY" firstAttribute="centerY" secondItem="etv-5e-qep" secondAttribute="centerY" id="skc-fm-zhh"/>
+                                        </constraints>
+                                    </view>
+                                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gAk-Im-adT">
+                                        <rect key="frame" x="0.0" y="60" width="375" height="649"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" placeholderIntrinsicWidth="110" placeholderIntrinsicHeight="200" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="iZL-Mh-T0K">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="200"/>
+                                            </stackView>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstItem="iZL-Mh-T0K" firstAttribute="leading" secondItem="gAk-Im-adT" secondAttribute="leading" id="9mi-8b-e3c"/>
+                                            <constraint firstItem="iZL-Mh-T0K" firstAttribute="top" secondItem="gAk-Im-adT" secondAttribute="top" id="Nda-s4-Pew"/>
+                                            <constraint firstAttribute="bottom" secondItem="iZL-Mh-T0K" secondAttribute="bottom" constant="20" id="bbW-p8-dC3"/>
+                                            <constraint firstAttribute="trailing" secondItem="iZL-Mh-T0K" secondAttribute="trailing" id="xFu-15-2eD"/>
+                                        </constraints>
+                                    </scrollView>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="3pi-N7-nbV" firstAttribute="bottom" secondItem="0On-yQ-UeK" secondAttribute="bottom" id="JBQ-qi-nsG"/>
+                            <constraint firstItem="0On-yQ-UeK" firstAttribute="leading" secondItem="3pi-N7-nbV" secondAttribute="leading" id="fyX-o7-uTh"/>
+                            <constraint firstItem="3pi-N7-nbV" firstAttribute="trailing" secondItem="0On-yQ-UeK" secondAttribute="trailing" id="ovW-UE-aso"/>
+                            <constraint firstItem="0On-yQ-UeK" firstAttribute="top" secondItem="3pi-N7-nbV" secondAttribute="top" constant="25" id="s05-GW-wLr"/>
+                            <constraint firstItem="iZL-Mh-T0K" firstAttribute="width" secondItem="Z2g-4m-atm" secondAttribute="width" id="s2I-MY-Vbd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3pi-N7-nbV"/>
+                    </view>
+                    <connections>
+                        <outlet property="stackContentView" destination="iZL-Mh-T0K" id="njx-5G-Erx"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rle-ol-2Ax" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="306" y="303"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="search_icon" width="23" height="23"/>
+        <namedColor name="C212121">
+            <color red="0.12941176470588237" green="0.12941176470588237" blue="0.12941176470588237" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

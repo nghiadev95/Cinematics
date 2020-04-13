@@ -10,15 +10,11 @@ import Foundation
 
 class UserDefaultService {
     
-    enum Key: String {
-        case token
-    }
-    
     static let shared = UserDefaultService()
     
     private let userDefaultsInstance = UserDefaults.standard
     
-    @UserDefaultVariable(key: Key.token.rawValue, defaultValue: "")
+    @UserDefaultVariable(key: "token", defaultValue: "")
     var token
     
     func removeAll() {

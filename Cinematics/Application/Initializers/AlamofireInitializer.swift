@@ -9,5 +9,6 @@
 import Alamofire
 
 class AlamofireInitializer: Initializable {
-    func performInitialization() {}
+    func performInitialization() {
+    }
 }

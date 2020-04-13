@@ -42,6 +42,9 @@ extension APIConfiguration {
         var request = URLRequest(url: url)
         request.method = method
         request = try createTask(request: request)
+        
+        
+        
         return request
     }
     

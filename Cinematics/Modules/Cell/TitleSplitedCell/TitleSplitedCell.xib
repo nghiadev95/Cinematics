@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16086"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TitleSplitedCell" customModule="Cinematics" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="284" height="276"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="284" height="276"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LzA-d5-il6">
+                        <rect key="frame" x="0.0" y="0.0" width="284" height="276"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="KRz-ow-XNO">
+                                <rect key="frame" x="0.0" y="0.0" width="284" height="276"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hih-ja-PyD">
+                                        <rect key="frame" x="0.0" y="0.0" width="284" height="240"/>
+                                        <subviews>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background_landing" translatesAutoresizingMaskIntoConstraints="NO" id="qzs-CG-UEC" customClass="RoundedImageView" customModule="Cinematics" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="0.0" width="284" height="230"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="mCornerRadius">
+                                                        <real key="value" value="5"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </imageView>
+                                        </subviews>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="qzs-CG-UEC" firstAttribute="leading" secondItem="hih-ja-PyD" secondAttribute="leading" id="Bjl-ga-yQ5"/>
+                                            <constraint firstItem="qzs-CG-UEC" firstAttribute="top" secondItem="hih-ja-PyD" secondAttribute="top" id="GpN-WD-k5R"/>
+                                            <constraint firstAttribute="trailing" secondItem="qzs-CG-UEC" secondAttribute="trailing" id="IIM-Rv-gT7"/>
+                                            <constraint firstAttribute="bottom" secondItem="qzs-CG-UEC" secondAttribute="bottom" constant="10" id="g09-O4-zwz"/>
+                                        </constraints>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EndGame" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4km-G2-hoC">
+                                        <rect key="frame" x="0.0" y="240" width="284" height="36"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="36" id="UG3-5Q-C7J"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                        <color key="textColor" name="C222222"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="KRz-ow-XNO" firstAttribute="leading" secondItem="LzA-d5-il6" secondAttribute="leading" id="9Fe-2Q-9gL"/>
+                            <constraint firstItem="KRz-ow-XNO" firstAttribute="top" secondItem="LzA-d5-il6" secondAttribute="top" id="FSa-kz-01m"/>
+                            <constraint firstAttribute="bottom" secondItem="KRz-ow-XNO" secondAttribute="bottom" id="jTj-ew-004"/>
+                            <constraint firstAttribute="trailing" secondItem="KRz-ow-XNO" secondAttribute="trailing" id="jfd-Mb-jcV"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="LzA-d5-il6" firstAttribute="trailing" secondItem="gTV-IL-0wX" secondAttribute="trailing" id="QDb-IW-Apo"/>
+                <constraint firstAttribute="top" secondItem="LzA-d5-il6" secondAttribute="top" id="U6S-T4-9G7"/>
+                <constraint firstAttribute="leading" secondItem="LzA-d5-il6" secondAttribute="leading" id="WaR-ju-iox"/>
+                <constraint firstAttribute="bottom" secondItem="LzA-d5-il6" secondAttribute="bottom" id="qXu-jx-1a2"/>
+            </constraints>
+            <size key="customSize" width="284" height="276"/>
+            <point key="canvasLocation" x="-133.33333333333334" y="62.946428571428569"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="background_landing" width="375" height="812"/>
+        <namedColor name="C222222">
+            <color red="0.13333333333333333" green="0.13333333333333333" blue="0.13333333333333333" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

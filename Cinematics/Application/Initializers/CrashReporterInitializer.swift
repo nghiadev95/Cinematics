@@ -8,6 +8,14 @@
 
 import Foundation
 
+protocol ErrorReportable {
+    func report(error: Error)
+}
+
 class CrashReporterInitializer: Initializable {
     func performInitialization() {}
+    
+    func reportError(error: Error) {
+        
+    }
 }

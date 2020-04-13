@@ -1,5 +1,5 @@
 PODS:
-  - FLEX (4.0.0)
+  - FLEX (4.1.1)
   - R.swift (5.1.0):
     - R.swift.Library (~> 5.1.0)
   - R.swift.Library (5.1.0)
@@ -15,7 +15,7 @@ SPEC REPOS:
     - R.swift.Library
 
 SPEC CHECKSUMS:
-  FLEX: 3fb1e8096b230a08a5d4d5f3c2992b84399a6abf
+  FLEX: 81096107977a09836eb440173010ceeef01105d6
   R.swift: 8cbc4fc69b740305b6a17c8a8ed968eb788962d9
   R.swift.Library: fa85ce1e0d0b7e818cd9e080df910ba54d2776cc
 
