@@ -22,7 +22,7 @@ final class NetworkLogger: EventMonitor {
         self.level = level
     }
 
-    func request<Value>(_ request: DataRequest, didParseResponse response: DataResponse<Value, AFError>) {
+    func request(_ request: DataRequest, didParseResponse response: DataResponse<Data?, AFError>) {
         var message: String = ""
         if let urlRequest = request.request, let urlResponse = request.response {
             message.append("------------- \(String(describing: request)) -------------")

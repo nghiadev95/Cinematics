@@ -35,8 +35,10 @@ final class MoviesViewController: BaseViewController, NavigationBarVisible {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-        service.getTrendingMovie().subscribe(onNext: { (response) in
-            }).disposed(by: disposeBag)
+        service.getTrendingMovie().debug("getTrendingMovie", trimOutput: false).subscribe().disposed(by: disposeBag)
+        service.getTrendingMovie().debug("getTrendingMovie1", trimOutput: false).subscribe().disposed(by: disposeBag)
+        service.getTrendingMovie().debug("getTrendingMovie2", trimOutput: false).subscribe().disposed(by: disposeBag)
+        service.getTrendingMovie().debug("getTrendingMovie3", trimOutput: false).subscribe().disposed(by: disposeBag)
     }
 }
 

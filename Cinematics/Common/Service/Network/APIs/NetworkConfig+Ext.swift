@@ -14,7 +14,7 @@ extension NetworkConfig {
         let errorReporter: ErrorReportable? = nil
         let adapters: [RequestAdapter]? = [AuthenticationAdapter(auth: .bearer(token: Constants.API.TheMoviedbKey))]
         let retriers: [RequestRetrier]? = nil
-        let eventMotinors: [EventMonitor]? = [NetworkLogger(level: .verbose)]
+        let eventMotinors: [EventMonitor]? = [NetworkLogger(level: .info)]
         return NetworkConfig(decoder: decoder, errorReporter: errorReporter, adapters: adapters, retriers: retriers, monitors: eventMotinors)
     }
 }
