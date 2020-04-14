@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Alamofire
 
 /// A type representing possible errors Moya can throw.
 public enum NetworkError: Swift.Error {

@@ -6,10 +6,7 @@
 //  Copyright © 2020 Nghia Nguyen. All rights reserved.
 //
 
-import Alamofire
 import Foundation
-
-public typealias HTTPMethod = Alamofire.HTTPMethod
 
 protocol TargetType {
     /// The target's base `URL`.
@@ -33,7 +30,7 @@ protocol TargetType {
 
 extension TargetType {
     var validationType: ValidationType {
-        return .none
+        return .successCodes
     }
 
     var headers: [String: String]? {

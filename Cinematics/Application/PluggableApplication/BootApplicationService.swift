@@ -16,7 +16,6 @@ final class BootApplicationManager: NSObject, BootApplicationService {
     var window: UIWindow?
     
     lazy var initializers: [Initializable] = [
-        AlamofireInitializer(),
         CrashReporterInitializer(),
         LoggerInitializer()
     ]

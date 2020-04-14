@@ -13,9 +13,7 @@ protocol ErrorReportable {
 }
 
 class CrashReporterInitializer: Initializable {
-    func performInitialization() {}
+    let reporter: ErrorReportable? = nil
     
-    func reportError(error: Error) {
-        
-    }
+    func performInitialization() {}
 }

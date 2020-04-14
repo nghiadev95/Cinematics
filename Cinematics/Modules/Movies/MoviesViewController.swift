@@ -30,9 +30,13 @@ final class MoviesViewController: BaseViewController, NavigationBarVisible {
 
     // MARK: - Lifecycle -
 
+    let service = MoviesService()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        service.getTrendingMovie().subscribe(onNext: { (response) in
+            }).disposed(by: disposeBag)
     }
 }
 
