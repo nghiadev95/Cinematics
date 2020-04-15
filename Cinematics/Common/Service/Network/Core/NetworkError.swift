@@ -27,9 +27,6 @@ public enum NetworkError: Swift.Error {
     /// Indicates a response failed due to an underlying `Error`.
     case underlying(Swift.Error, Response?)
 
-    /// Indicates that an `Endpoint` failed to map to a `URLRequest`.
-    case requestMapping(String)
-
     /// Indicates that an `Endpoint` failed to encode the parameters for the `URLRequest`.
     case parameterEncoding(Swift.Error)
 }
@@ -44,7 +41,6 @@ public extension NetworkError {
         case .encodableMapping: return nil
         case .statusCode(let response): return response
         case .underlying(_, let response): return response
-        case .requestMapping: return nil
         case .parameterEncoding: return nil
         }
     }
@@ -58,7 +54,6 @@ public extension NetworkError {
         case .encodableMapping(let error): return error
         case .statusCode: return nil
         case .underlying(let error, _): return error
-        case .requestMapping: return nil
         case .parameterEncoding(let error): return error
         }
     }
@@ -81,8 +76,6 @@ extension NetworkError: LocalizedError {
             return "Status code didn't fall within the given range."
         case .underlying(let error, _):
             return error.localizedDescription
-        case .requestMapping:
-            return "Failed to map Endpoint to a URLRequest."
         case .parameterEncoding(let error):
             return "Failed to encode parameters for URLRequest. \(error.localizedDescription)"
         }

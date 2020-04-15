@@ -17,8 +17,7 @@ struct MoviesService: MoviesServicing {
     let network: Networking
     
     init() {
-        let config = NetworkConfig.defaultInstance()
-        network = Network(config: config)
+        network = Network(config: NetworkConfig.defaultInstance())
     }
     
     func getTrendingMovie() -> Observable<TrendingResponse> {
