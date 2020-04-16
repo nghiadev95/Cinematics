@@ -21,6 +21,6 @@ struct MoviesService: MoviesServicing {
     }
     
     func getTrendingMovie() -> Observable<TrendingResponse> {
-        return network.request(targetType: MoviesTarget.trending)
+        return network.rxRequest(targetType: MoviesTarget.trending)
     }
 }

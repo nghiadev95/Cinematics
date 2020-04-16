@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 public final class Response: CustomDebugStringConvertible, Equatable {
     /// The status code of the response.
@@ -59,6 +60,14 @@ extension Response {
             }
             throw NetworkError.jsonMapping(self)
         }
+    }
+
+    /// Maps data received from the signal into an Image.
+    func mapImage() throws -> UIImage {
+        guard let image = UIImage(data: data) else {
+            throw NetworkError.imageMapping(self)
+        }
+        return image
     }
 
     /// Maps data received from the signal into a Decodable object.

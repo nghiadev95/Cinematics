@@ -9,9 +9,12 @@
 import Alamofire
 import Foundation
 import RxSwift
+import UIKit
 
 protocol Networking {
-    func request<T: TargetType, H: Codable>(targetType: T, atKeyPath keyPath: String?) -> Observable<H>
+    func requestCodeable<T: TargetType, H: Codable>(targetType: T, atKeyPath keyPath: String?, completion: @escaping (Result<H, NetworkError>) -> Void) -> Cancellable
+    func rxRequest<T: TargetType, H: Codable>(targetType: T) -> Observable<H>
+    func rxRequest<T: TargetType, H: Codable>(targetType: T, atKeyPath keyPath: String?) -> Observable<H>
 }
 
 struct Network: Networking {
@@ -25,42 +28,82 @@ struct Network: Networking {
         self.section = Session(interceptor: config.interceptor, eventMonitors: config.eventMonitors)
     }
 
-    func request<T, H>(targetType: T, atKeyPath keyPath: String? = nil) -> Observable<H> where T: TargetType, H: Codable {
-        return Observable<H>.create { (observer) -> Disposable in
-            let endpoint = Endpoint(targetType: targetType)
-            let requestId = endpoint.hashValue
+    // Request with Codable
+    func requestCodeable<T, H>(targetType: T, atKeyPath keyPath: String? = nil, completion: @escaping (Result<H, NetworkError>) -> Void) -> Cancellable where T: TargetType, H: Decodable, H: Encodable {
+        let cancellable = request(targetType: targetType, atKeyPath: keyPath) { result in
+            switch result {
+            case let .success(response):
+                do {
+                    let resultObject = try response.map(H.self, atKeyPath: keyPath, using: self.decoder)
+                    completion(.success(resultObject))
+                } catch let mapError {
+                    completion(.failure(mapError as! NetworkError))
+                }
+            case let .failure(error):
+                completion(.failure(error))
+            }
+        }
+        return cancellable
+    }
 
-            self.request(requestId: requestId, endpoint: endpoint) { result in
+    // Main request function
+    @discardableResult
+    private func request<T: TargetType>(targetType: T, atKeyPath keyPath: String? = nil, completion: @escaping (Result<Response, NetworkError>) -> Void) -> Cancellable {
+        let endpoint = Endpoint(targetType: targetType)
+        let requestId = String(endpoint.hashValue)
+        log.debug("add new Request with id: \(requestId)")
+        let validationStatusCodes = endpoint.targetType.validationType.statusCodes
+        let request = section.request(endpoint).validate(statusCode: validationStatusCodes)
+        let cancellable = Cancellable(requestId: requestId, dataRequest: request, requestType: .json)
+        
+        RequestManager.instance.addRequest(cancellable: cancellable) { dataResponse in
+            let result = self.convertResponseToResult(dataResponse.response, request: dataResponse.request, data: dataResponse.data, error: dataResponse.error)
+            switch result {
+            case let .success(response):
+                completion(.success(response))
+            case let .failure(error):
+                self.errorReporter?.report(error: error)
+                completion(.failure(error))
+            }
+        }
+        
+        return cancellable
+    }
+
+//    func downloadImage(url: URL) -> Observable<UIImage> {
+//        let requestId = UUID().uuidString
+//        log.debug("add new Request with id: \(requestId)")
+//        let request = section.download(url)
+//        DownloadManager.instance.addRequest(id: <#T##Int#>, request: <#T##DataRequest#>, responseHandler: <#T##DataResponseHandler##DataResponseHandler##(AFDataResponse<Data?>) -> Void#>)
+//    }
+}
+
+extension Network {
+    // MARK: RxSwift Implementation
+
+    func rxRequest<T, H>(targetType: T) -> Observable<H> where T: TargetType, H: Decodable, H: Encodable {
+        return rxRequest(targetType: targetType, atKeyPath: nil)
+    }
+
+    func rxRequest<T, H>(targetType: T, atKeyPath keyPath: String? = nil) -> Observable<H> where T: TargetType, H: Decodable, H: Encodable {
+        return Observable<H>.create { (observer) -> Disposable in
+            let cancelable = self.requestCodeable(targetType: targetType, atKeyPath: keyPath) { (result: Result<H, NetworkError>) in
                 switch result {
-                case let .success(response):
-                    do {
-                        let resultObject = try response.map(H.self, atKeyPath: keyPath, using: self.decoder)
-                        observer.onNext(resultObject)
-                        observer.onCompleted()
-                    } catch let mapError {
-                        self.errorReporter?.report(error: mapError)
-                        observer.onError(mapError)
-                    }
+                case let .success(object):
+                    observer.onNext(object)
+                    observer.onCompleted()
                 case let .failure(error):
                     observer.onError(error)
                 }
             }
             return Disposables.create {
-                RequestManager.instance.cancelRequest(id: requestId)
+                cancelable.cancel()
             }
         }
     }
+}
 
-    private func request(requestId: Int, endpoint: Endpoint, completion: @escaping (Result<Response, NetworkError>) -> Void) {
-        log.debug("add new Request with id: \(requestId)")
-        let validationStatusCodes = endpoint.targetType.validationType.statusCodes
-        let request = section.request(endpoint).validate(statusCode: validationStatusCodes)
-        RequestManager.instance.addRequest(id: requestId, request: request) { dataResponse in
-            let result = self.convertResponseToResult(dataResponse.response, request: dataResponse.request, data: dataResponse.data, error: dataResponse.error)
-            completion(result)
-        }
-    }
-
+extension Network {
     private func convertResponseToResult(_ response: HTTPURLResponse?, request: URLRequest?, data: Data?, error: Swift.Error?) -> Result<Response, NetworkError> {
         switch (response, data, error) {
         case let (.some(response), data, .none):

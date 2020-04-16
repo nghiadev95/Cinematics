@@ -10,32 +10,33 @@ import Foundation
 import Alamofire
 
 class NetworkOperation: ConcurrentOperation {
-    let requestId: Int
-    let dataRequest: DataRequest
+    let cancelable: Cancellable
 
-    init(requestId: Int, dataRequest: DataRequest) {
-        self.requestId = requestId
-        self.dataRequest = dataRequest
+    init(cancelable: Cancellable) {
+        self.cancelable = cancelable
     }
 
     deinit {
-        log.debug("\(self.className) - requestId: \(requestId) - deinit got called")
+        log.debug("\(self.className) - requestId: \(cancelable.requestId) - deinit got called")
     }
 
     override func main() {
-        dataRequest.response { [weak self] dataResponse in
+        cancelable.dataRequest.response { [weak self] dataResponse in
             guard let self = self else { return }
-            self.completionHandler?(self.requestId, dataResponse)
+            self.completionHandler?(self.cancelable.requestId, dataResponse)
             self.finish()
         }
     }
 
-    var completionHandler: ((Int, AFDataResponse<Data?>) -> Void)?
+    var completionHandler: ((String, AFDataResponse<Data?>) -> Void)?
 
+    override func finish() {
+        super.finish()
+        cancelable.removeFromManager()
+    }
+    
     override func cancel() {
-        if !dataRequest.isCancelled {
-            dataRequest.cancel()
-        }
+        cancelable.cancel()
         super.cancel()
     }
 }
