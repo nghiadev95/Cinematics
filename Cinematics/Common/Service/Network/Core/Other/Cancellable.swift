@@ -39,11 +39,11 @@ class Cancellable {
     func removeFromManager() {
         switch requestType {
         case .json:
-            RequestManager.instance.cancelRequest(id: requestId)
+            RequestManager.instance.removeRequest(id: requestId)
         case .upload:
-            UploadManager.instance.cancelRequest(id: requestId)
+            UploadManager.instance.removeRequest(id: requestId)
         case .download:
-            DownloadManager.instance.cancelRequest(id: requestId)
+            DownloadManager.instance.removeRequest(id: requestId)
         }
     }
 }

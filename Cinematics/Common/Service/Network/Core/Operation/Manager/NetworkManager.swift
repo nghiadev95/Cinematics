@@ -38,6 +38,10 @@ class NetworkManager {
         operationList[id]?.cancel()
         operationList.removeValue(forKey: id)
     }
+    
+    func removeRequest(id: String) {
+        operationList.removeValue(forKey: id)
+    }
 
     func cancelAllRequest() {
         operationQueue.cancelAllOperations()
