@@ -33,10 +33,6 @@ class BaseOperationManager {
             operationQueue.isSuspended = isSuspended
         }
     }
-    
-    func removeRequest(id: String) {
-        operationList.removeValue(forKey: id)
-    }
 
     func cancelAllRequest() {
         operationQueue.cancelAllOperations()

@@ -9,26 +9,25 @@
 import Alamofire
 import Foundation
 
-class Cancellable {
+protocol Cancellable {
+    func cancel()
+}
+
+class RequestCancellable: Cancellable {
+    let requestID: String
+    let operationID: String
     let operation: Operation?
 
-    init(operation: Operation?) {
+    init(requestID: String, operationID: String, operation: Operation?) {
+        self.requestID = requestID
+        self.operationID = operationID
         self.operation = operation
     }
 
     func cancel() {
-        if !(operation?.isCancelled ?? false) {
-            operation?.cancel()
+        if let operation = operation, !operation.isCancelled {
+            operation.cancel()
         }
-        switch operation {
-        case is RequestOperation:
-            RequestManager.instance.removeRequest(id: (operation as! RequestOperation).requestId)
-//        case is :
-//            UploadManager.instance.removeRequest(id: requestId)
-//        case is DownloadRequest:
-//            DownloadManager.instance.removeRequest(id: requestId)
-        default:
-            break
-        }
+        RequestManager.instance.removeRequest(requestID: requestID, operationID: operationID)
     }
 }

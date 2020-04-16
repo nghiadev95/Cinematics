@@ -50,12 +50,12 @@ struct Network: Networking {
     @discardableResult
     private func request<T: TargetType>(targetType: T, atKeyPath keyPath: String? = nil, completion: @escaping (Result<Response, NetworkError>) -> Void) -> Cancellable {
         let endpoint = Endpoint(targetType: targetType)
-        let requestId = String(endpoint.hashValue)
-        log.debug("add new Request with id: \(requestId)")
+        let operationID = String(endpoint.hashValue)
+        log.debug("add new Request with operationID: \(operationID)")
         let validationStatusCodes = endpoint.targetType.validationType.statusCodes
         let request = section.request(endpoint).validate(statusCode: validationStatusCodes)
         
-        return RequestManager.instance.addRequest(requestId: requestId, request: request) { dataResponse in
+        return RequestManager.instance.addOperation(operationID: operationID, request: request) { dataResponse in
             let result = self.convertResponseToResult(dataResponse.response, request: dataResponse.request, data: dataResponse.data, error: dataResponse.error)
             switch result {
             case let .success(response):

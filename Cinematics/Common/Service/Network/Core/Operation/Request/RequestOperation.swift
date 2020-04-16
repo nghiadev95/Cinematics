@@ -10,22 +10,22 @@ import Foundation
 import Alamofire
 
 class RequestOperation: ConcurrentOperation {
+    let operationID: String
     let request: DataRequest
-    let requestId: String
 
-    init(requestId: String, request: DataRequest) {
+    init(operationID: String, request: DataRequest) {
+        self.operationID = operationID
         self.request = request
-        self.requestId = requestId
     }
 
     deinit {
-        log.debug("\(self.className) - requestId: \(requestId) - deinit got called")
+        log.debug("\(self.className) - operationID: \(operationID) - deinit got called")
     }
 
     override func main() {
         request.response { [weak self] dataResponse in
             guard let self = self else { return }
-            self.completionHandler?(self.requestId, dataResponse)
+            self.completionHandler?(self.operationID, dataResponse)
             self.finish()
         }
     }
@@ -39,6 +39,6 @@ class RequestOperation: ConcurrentOperation {
     
     override func finish() {
         super.finish()
-        RequestManager.instance.removeRequest(id: requestId)
+        RequestManager.instance.removeOperation(id: operationID)
     }
 }

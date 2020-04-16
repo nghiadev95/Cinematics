@@ -13,36 +13,57 @@ class RequestManager: BaseOperationManager {
 
     static let instance = RequestManager()
 
-    var responseHandlerList: [String: [DataResponseHandler]] = [:]
+    var operationRequestMapping: [String: [String]] = [:]                // [OperationID: RequestID]
+    var requestCallbackMapping: [String: DataResponseHandler] = [:]      // [RequestID: Callback]
 
-    open func addRequest(requestId: String, request: DataRequest, responseHandler: @escaping DataResponseHandler) -> Cancellable {
+    open func addOperation(operationID: String, request: DataRequest, responseHandler: @escaping DataResponseHandler) -> Cancellable {
+        let newRequestID = UUID().uuidString
         var operation: ConcurrentOperation?
-        if let handlers = responseHandlerList[requestId], !handlers.isEmpty {
-            responseHandlerList[requestId]?.append(responseHandler)
+        if let requestIDs = operationRequestMapping[operationID], !requestIDs.isEmpty {
+            operationRequestMapping[operationID]?.append(newRequestID)
+            requestCallbackMapping[newRequestID] = responseHandler
         } else {
-            responseHandlerList[requestId] = [responseHandler]
-            let requestOperation = RequestOperation(requestId: requestId, request: request)
-            requestOperation.completionHandler = { [weak self] completedRequestId, response in
-                self?.responseHandlerList[completedRequestId]?.forEach { handler in
-                    handler(response)
-                }
-                self?.responseHandlerList.removeValue(forKey: completedRequestId)
-                self?.operationList.removeValue(forKey: completedRequestId)
+            operationRequestMapping[operationID] = [newRequestID]
+            let requestOperation = RequestOperation(operationID: operationID, request: request)
+            requestOperation.completionHandler = { [weak self] completedOperationID, response in
+                self?.operationRequestMapping[completedOperationID]?.forEach({ (requestId) in
+                    self?.requestCallbackMapping[requestId]?(response)
+                })
+                self?.removeOperation(id: completedOperationID)
             }
             operationQueue.addOperation(requestOperation)
-            operationList[requestId] = requestOperation
+            operationList[operationID] = requestOperation
             operation = requestOperation
         }
-        return Cancellable(operation: operation)
+        return RequestCancellable(requestID: newRequestID, operationID: operationID, operation: operation)
     }
 
     override func cancelAllRequest() {
         super.cancelAllRequest()
-        responseHandlerList.removeAll()
+        operationRequestMapping.removeAll()
+        requestCallbackMapping.removeAll()
     }
     
-    override func removeRequest(id: String) {
-        super.removeRequest(id: id)
-        responseHandlerList.removeValue(forKey: id)
+    func removeRequest(requestID: String, operationID: String) {
+        var requests = operationRequestMapping[operationID]
+        requests?.removeAll(where: { (id) -> Bool in
+            return id == requestID
+        })
+        if requests?.isEmpty ?? false {
+            operationRequestMapping.removeValue(forKey: operationID)
+            operationList.removeValue(forKey: operationID)
+        } else {
+            operationRequestMapping[operationID] = requests
+        }
+        requestCallbackMapping.removeValue(forKey: requestID)
+    }
+    
+    func removeOperation(id: String) {
+        operationList.removeValue(forKey: id)
+        let requestIDs = operationRequestMapping[id]
+        operationRequestMapping.removeValue(forKey: id)
+        requestIDs?.forEach({ (requestID) in
+            requestCallbackMapping.removeValue(forKey: requestID)
+        })
     }
 }
