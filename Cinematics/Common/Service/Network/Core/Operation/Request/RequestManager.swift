@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RequestManager: NetworkManager {
+class RequestManager: BaseOperationManager {
     private override init() {}
 
     static let instance = RequestManager()
@@ -16,22 +16,24 @@ class RequestManager: NetworkManager {
     var responseHandlerList: [String: [DataResponseHandler]] = [:]
 
     open func addRequest(requestId: String, request: DataRequest, responseHandler: @escaping DataResponseHandler) -> Cancellable {
+        var operation: ConcurrentOperation?
         if let handlers = responseHandlerList[requestId], !handlers.isEmpty {
             responseHandlerList[requestId]?.append(responseHandler)
         } else {
             responseHandlerList[requestId] = [responseHandler]
-            let operation = RequestOperation(requestId: requestId, request: request)
-            operation.completionHandler = { [weak self] completedRequestId, response in
+            let requestOperation = RequestOperation(requestId: requestId, request: request)
+            requestOperation.completionHandler = { [weak self] completedRequestId, response in
                 self?.responseHandlerList[completedRequestId]?.forEach { handler in
                     handler(response)
                 }
                 self?.responseHandlerList.removeValue(forKey: completedRequestId)
                 self?.operationList.removeValue(forKey: completedRequestId)
             }
-            operationQueue.addOperation(operation)
-            operationList[requestId] = operation
+            operationQueue.addOperation(requestOperation)
+            operationList[requestId] = requestOperation
+            operation = requestOperation
         }
-        return Cancellable(requestId: requestId, request: request)
+        return Cancellable(operation: operation)
     }
 
     override func cancelAllRequest() {

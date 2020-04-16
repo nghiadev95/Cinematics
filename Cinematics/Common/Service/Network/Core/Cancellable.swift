@@ -6,40 +6,29 @@
 //  Copyright © 2020 Nghia Nguyen. All rights reserved.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
 class Cancellable {
-    let requestId: String
-    let request: Request
-    
-    init(requestId: String, request: Request) {
-        self.requestId = requestId
-        self.request = request
+    let operation: Operation?
+
+    init(operation: Operation?) {
+        self.operation = operation
     }
-    
-    var isCancelled: Bool {
-        return request.isCancelled
-    }
-    
+
     func cancel() {
-        if !isCancelled {
-            request.cancel()
+        if !(operation?.isCancelled ?? false) {
+            operation?.cancel()
         }
-        removeFromManager()
-    }
-    
-    func removeFromManager() {
-//        switch request {
-//        case is DataRequest:
-//            
-//        case is UploadRequest:
+        switch operation {
+        case is RequestOperation:
+            RequestManager.instance.removeRequest(id: (operation as! RequestOperation).requestId)
+//        case is :
 //            UploadManager.instance.removeRequest(id: requestId)
 //        case is DownloadRequest:
 //            DownloadManager.instance.removeRequest(id: requestId)
-//        default:
-//            break
-//        }
+        default:
+            break
+        }
     }
 }
-

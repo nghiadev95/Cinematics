@@ -32,6 +32,11 @@ class RequestOperation: ConcurrentOperation {
 
     var completionHandler: ((String, AFDataResponse<Data?>) -> Void)?
 
+    override func cancel() {
+        request.cancel()
+        super.cancel()
+    }
+    
     override func finish() {
         super.finish()
         RequestManager.instance.removeRequest(id: requestId)

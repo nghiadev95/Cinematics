@@ -8,7 +8,7 @@
 
 import Foundation
 
-class DownloadManager: NetworkManager {
+class DownloadManager: BaseOperationManager {
     private override init() {}
 
     static let instance = DownloadManager()

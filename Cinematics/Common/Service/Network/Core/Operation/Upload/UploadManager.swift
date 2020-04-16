@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UploadManager: NetworkManager {
+class UploadManager: BaseOperationManager {
     private override init() {}
 
     static let instance = UploadManager()

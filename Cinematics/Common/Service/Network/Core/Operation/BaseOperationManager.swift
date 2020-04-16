@@ -1,5 +1,5 @@
 //
-//  NetworkManager.swift
+//  BaseOperationManager.swift
 //  Cinematics
 //
 //  Created by Nghia Nguyen on 4/16/20.
@@ -11,9 +11,9 @@ import Foundation
 
 typealias DataResponseHandler = (AFDataResponse<Data?>) -> Void
 
-class NetworkManager {
+class BaseOperationManager {
     let operationQueue = OperationQueue()
-    var operationList: [String: RequestOperation] = [:]
+    var operationList: [String: ConcurrentOperation] = [:]
 
     var maxConcurrentRequest: Int = 5 {
         didSet {
@@ -32,11 +32,6 @@ class NetworkManager {
         didSet {
             operationQueue.isSuspended = isSuspended
         }
-    }
-
-    func cancelRequest(id: String) {
-        operationList[id]?.cancel()
-        removeRequest(id: id)
     }
     
     func removeRequest(id: String) {
