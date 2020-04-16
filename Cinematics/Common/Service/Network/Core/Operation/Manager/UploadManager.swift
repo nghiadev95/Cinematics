@@ -13,5 +13,4 @@ class UploadManager: NetworkManager {
 
     static let instance = UploadManager()
 
-    open override func addRequest(cancellable: Cancellable, responseHandler: @escaping DataResponseHandler) {}
 }

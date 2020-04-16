@@ -11,6 +11,7 @@ import Alamofire
 public typealias Session = Alamofire.Session
 public typealias HTTPMethod = Alamofire.HTTPMethod
 
+public typealias Request = Alamofire.Request
 public typealias DataRequest = Alamofire.DataRequest
 public typealias DataResponse = Alamofire.DataResponse
 public typealias AFError = Alamofire.AFError

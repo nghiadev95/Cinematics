@@ -13,7 +13,7 @@ class DownloadManager: NetworkManager {
 
     static let instance = DownloadManager()
 
-    override func addRequest(cancellable: Cancellable, responseHandler: @escaping DataResponseHandler) {
+//    override func addRequest(cancellable: Cancellable, responseHandler: @escaping DataResponseHandler) {
 //        let operation = NetworkOperation(cancelable: Cancellable(requestId: id, dataRequest: request))
 //        operation.completionHandler = { [weak self] completedRequestId, response in
 //            responseHandler(response)
@@ -21,5 +21,5 @@ class DownloadManager: NetworkManager {
 //        }
 //        operationQueue.addOperation(operation)
 //        operationList[id] = operation
-    }
+//    }
 }

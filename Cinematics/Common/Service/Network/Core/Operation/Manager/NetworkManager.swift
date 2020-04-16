@@ -13,7 +13,7 @@ typealias DataResponseHandler = (AFDataResponse<Data?>) -> Void
 
 class NetworkManager {
     let operationQueue = OperationQueue()
-    var operationList: [String: NetworkOperation] = [:]
+    var operationList: [String: RequestOperation] = [:]
 
     var maxConcurrentRequest: Int = 5 {
         didSet {
@@ -36,7 +36,7 @@ class NetworkManager {
 
     func cancelRequest(id: String) {
         operationList[id]?.cancel()
-        operationList.removeValue(forKey: id)
+        removeRequest(id: id)
     }
     
     func removeRequest(id: String) {
@@ -46,9 +46,5 @@ class NetworkManager {
     func cancelAllRequest() {
         operationQueue.cancelAllOperations()
         operationList.removeAll()
-    }
-
-    open func addRequest(cancellable: Cancellable, responseHandler: @escaping DataResponseHandler) {
-        fatalError("Implement not found!")
     }
 }

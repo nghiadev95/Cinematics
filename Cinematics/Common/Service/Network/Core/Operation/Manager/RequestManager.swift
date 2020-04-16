@@ -15,13 +15,12 @@ class RequestManager: NetworkManager {
 
     var responseHandlerList: [String: [DataResponseHandler]] = [:]
 
-    open override func addRequest(cancellable: Cancellable, responseHandler: @escaping DataResponseHandler) {
-        let id = cancellable.requestId
-        if let handlers = responseHandlerList[id], !handlers.isEmpty {
-            responseHandlerList[id]?.append(responseHandler)
+    open func addRequest(requestId: String, request: DataRequest, responseHandler: @escaping DataResponseHandler) -> Cancellable {
+        if let handlers = responseHandlerList[requestId], !handlers.isEmpty {
+            responseHandlerList[requestId]?.append(responseHandler)
         } else {
-            responseHandlerList[id] = [responseHandler]
-            let operation = NetworkOperation(cancelable: cancellable)
+            responseHandlerList[requestId] = [responseHandler]
+            let operation = RequestOperation(requestId: requestId, request: request)
             operation.completionHandler = { [weak self] completedRequestId, response in
                 self?.responseHandlerList[completedRequestId]?.forEach { handler in
                     handler(response)
@@ -30,12 +29,18 @@ class RequestManager: NetworkManager {
                 self?.operationList.removeValue(forKey: completedRequestId)
             }
             operationQueue.addOperation(operation)
-            operationList[id] = operation
+            operationList[requestId] = operation
         }
+        return Cancellable(requestId: requestId, request: request)
     }
 
     override func cancelAllRequest() {
         super.cancelAllRequest()
         responseHandlerList.removeAll()
+    }
+    
+    override func removeRequest(id: String) {
+        super.removeRequest(id: id)
+        responseHandlerList.removeValue(forKey: id)
     }
 }

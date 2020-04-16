@@ -54,9 +54,8 @@ struct Network: Networking {
         log.debug("add new Request with id: \(requestId)")
         let validationStatusCodes = endpoint.targetType.validationType.statusCodes
         let request = section.request(endpoint).validate(statusCode: validationStatusCodes)
-        let cancellable = Cancellable(requestId: requestId, dataRequest: request, requestType: .json)
         
-        RequestManager.instance.addRequest(cancellable: cancellable) { dataResponse in
+        return RequestManager.instance.addRequest(requestId: requestId, request: request) { dataResponse in
             let result = self.convertResponseToResult(dataResponse.response, request: dataResponse.request, data: dataResponse.data, error: dataResponse.error)
             switch result {
             case let .success(response):
@@ -66,16 +65,11 @@ struct Network: Networking {
                 completion(.failure(error))
             }
         }
-        
-        return cancellable
     }
 
-//    func downloadImage(url: URL) -> Observable<UIImage> {
-//        let requestId = UUID().uuidString
-//        log.debug("add new Request with id: \(requestId)")
-//        let request = section.download(url)
-//        DownloadManager.instance.addRequest(id: <#T##Int#>, request: <#T##DataRequest#>, responseHandler: <#T##DataResponseHandler##DataResponseHandler##(AFDataResponse<Data?>) -> Void#>)
-//    }
+    func downloadImage(url: URL) {
+        
+    }
 }
 
 extension Network {
