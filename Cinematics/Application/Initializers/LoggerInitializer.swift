@@ -14,7 +14,7 @@ let log = SwiftyBeaver.self
 class LoggerInitializer: Initializable {
     func performInitialization() {
         let console = ConsoleDestination()
-        console.format = "$DHH:mm:ss$d $L $M"
+        console.format = "$DHH:mm:ss $d $X $L $M"
         log.addDestination(console)
     }
 }
