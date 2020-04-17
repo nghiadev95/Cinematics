@@ -19,13 +19,13 @@ protocol Networking {
 
 struct Network: Networking {
     private let errorReporter: ErrorReportable?
-    private let section: Session
+    private let session: Session
     private let decoder: JSONDecoder
 
     init(config: NetworkConfig) {
         self.decoder = config.decoder
         self.errorReporter = config.errorReporter
-        self.section = Session(interceptor: config.interceptor, eventMonitors: config.eventMonitors)
+        self.session = Session(interceptor: config.interceptor, eventMonitors: config.eventMonitors)
     }
 
     // Request with Codable
@@ -53,7 +53,7 @@ struct Network: Networking {
         let operationID = String(endpoint.hashValue)
         log.debug("add new Request with operationID: \(operationID)")
         let validationStatusCodes = endpoint.targetType.validationType.statusCodes
-        let request = section.request(endpoint).validate(statusCode: validationStatusCodes)
+        let request = session.request(endpoint).validate(statusCode: validationStatusCodes)
         
         return RequestManager.instance.addOperation(operationID: operationID, request: request) { dataResponse in
             let result = self.convertResponseToResult(dataResponse.response, request: dataResponse.request, data: dataResponse.data, error: dataResponse.error)
