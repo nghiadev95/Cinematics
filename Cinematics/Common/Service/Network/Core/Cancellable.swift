@@ -16,18 +16,13 @@ protocol Cancellable {
 class RequestCancellable: Cancellable {
     let requestID: String
     let operationID: String
-    let operation: Operation?
 
-    init(requestID: String, operationID: String, operation: Operation?) {
+    init(requestID: String, operationID: String) {
         self.requestID = requestID
         self.operationID = operationID
-        self.operation = operation
     }
 
     func cancel() {
-        if let operation = operation, !operation.isCancelled {
-            operation.cancel()
-        }
         RequestManager.instance.removeRequest(requestID: requestID, operationID: operationID)
     }
 }

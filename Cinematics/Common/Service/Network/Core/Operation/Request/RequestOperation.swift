@@ -36,9 +36,4 @@ class RequestOperation: ConcurrentOperation {
         request.cancel()
         super.cancel()
     }
-    
-    override func finish() {
-        super.finish()
-        RequestManager.instance.removeOperation(id: operationID)
-    }
 }
