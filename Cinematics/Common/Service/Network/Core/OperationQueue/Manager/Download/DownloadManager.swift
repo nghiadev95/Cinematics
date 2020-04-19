@@ -6,19 +6,19 @@
 //  Copyright © 2020 Nghia Nguyen. All rights reserved.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
 class DownloadManager: OperationQueueManager {
     private override init() {}
-    
+
     static let instance = DownloadManager()
 
     open func addOperation(request: DownloadRequest, responseHandler: @escaping (AFDownloadResponse<URL?>) -> Void) -> Cancellable {
         // 1. Create UUID for each Operation
         let operationID = UUID().uuidString
         // 2. Create DownloadOperator
-        let operation = DownloadOperator(operationID: operationID, request: request)
+        let operation = DownloadRequestOperation(operationID: operationID, request: request)
         // 3. When Operation completed
         //      - Execute callback
         //      - Remove completed Operation
@@ -32,8 +32,8 @@ class DownloadManager: OperationQueueManager {
         operationList[operationID] = operation
         return DownloadCancellable(operationID: operationID)
     }
-    
-    func removeDownload(operationID: String) {
+
+    func remove(operationID: String) {
         operationList.removeValue(forKey: operationID)?.cancel()
     }
 }

@@ -18,7 +18,7 @@ class UploadManager: OperationQueueManager {
         // 1. Create UUID for each Operation
         let operationID = UUID().uuidString
         // 2. Create DownloadOperator
-        let operation = UploadOperator(operationID: operationID, request: request)
+        let operation = DataRequestOperation(operationID: operationID, request: request)
         // 3. When Operation completed
         //      - Execute callback
         //      - Remove completed Operation
@@ -30,7 +30,7 @@ class UploadManager: OperationQueueManager {
         operationQueue.addOperation(operation)
         // 5. Save Operation into operationList, using for cancel
         operationList[operationID] = operation
-        return DownloadCancellable(operationID: operationID)
+        return UploadCancellable(operationID: operationID)
     }
 
     func remove(operationID: String) {

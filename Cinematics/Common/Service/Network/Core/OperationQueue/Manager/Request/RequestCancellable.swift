@@ -16,6 +16,6 @@ class RequestCancellable: Cancellable {
     }
 
     func cancel() {
-        RequestManager.instance.removeRequest(requestID: requestID, operationID: operationID)
+        RequestManager.instance.remove(requestID: requestID, operationID: operationID)
     }
 }

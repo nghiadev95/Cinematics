@@ -33,7 +33,7 @@ class RequestManager: OperationQueueManager {
             // 1. Create mapping between OperationID and RequestID
             operationRequestMapping[operationID] = [newRequestID]
             // 2. Create RequestOperation
-            let requestOperation = RequestOperation(operationID: operationID, request: request)
+            let requestOperation = DataRequestOperation(operationID: operationID, request: request)
             // 3. When Operation completed
             //      - Execute all callbacks
             //      - Remove completed RequestOperation
@@ -50,6 +50,18 @@ class RequestManager: OperationQueueManager {
         }
         return RequestCancellable(requestID: newRequestID, operationID: operationID)
     }
+    
+    private func removeCompletedOperation(id: String) {
+        // Remove operation
+        operationList.removeValue(forKey: id)
+        // remove all RequestIDs mapping with this OperationID
+        let requestIDs = operationRequestMapping[id]
+        operationRequestMapping.removeValue(forKey: id)
+        // Remove all callback mapping with just removed RequestIDs
+        requestIDs?.forEach({ (requestID) in
+            requestCallbackMapping.removeValue(forKey: requestID)
+        })
+    }
 
     override func cancelAllRequest() {
         super.cancelAllRequest()
@@ -57,7 +69,7 @@ class RequestManager: OperationQueueManager {
         requestCallbackMapping.removeAll()
     }
     
-    func removeRequest(requestID: String, operationID: String) {
+    func remove(requestID: String, operationID: String) {
         // Remove RequestID
         var requests = operationRequestMapping[operationID]
         requests?.removeAll(where: { (id) -> Bool in
@@ -75,17 +87,5 @@ class RequestManager: OperationQueueManager {
         }
         // Remove all callback mapping with RequestID
         requestCallbackMapping.removeValue(forKey: requestID)
-    }
-    
-    private func removeCompletedOperation(id: String) {
-        // Remove operation
-        operationList.removeValue(forKey: id)
-        // remove all RequestIDs mapping with this OperationID
-        let requestIDs = operationRequestMapping[id]
-        operationRequestMapping.removeValue(forKey: id)
-        // Remove all callback mapping with just removed RequestIDs
-        requestIDs?.forEach({ (requestID) in
-            requestCallbackMapping.removeValue(forKey: requestID)
-        })
     }
 }

@@ -26,7 +26,7 @@ struct Network {
 
     // Data Request
     @discardableResult
-    private func request(_ convertible: URLRequestConvertible, statusCodes: [Int], completion: @escaping (Data?, Error?) -> Void) -> Cancellable {
+    func request(_ convertible: URLRequestConvertible, statusCodes: [Int], completion: @escaping (Data?, Error?) -> Void) -> Cancellable {
         let operationID = String(convertible.urlRequest.hashValue)
         log.debug("add new Request with operationID: \(operationID)")
 
@@ -48,8 +48,12 @@ struct Network {
 
     // Data Download
     @discardableResult
-    private func download(_ convertible: URLRequestConvertible, progress: @escaping ProgressHandler, destination: Destination, completion: @escaping (URL?, Error?) -> Void) -> Cancellable {
-        let request = session.download(convertible).downloadProgress(closure: progress)
+    func download(_ convertible: URLRequestConvertible, progress: ProgressHandler?, destination: Destination, completion: @escaping (URL?, Error?) -> Void) -> Cancellable {
+        var request: DownloadRequest = session.download(convertible)
+        if let progress = progress {
+            request = request.downloadProgress(closure: progress)
+        }
+        
         return DownloadManager.instance.addOperation(request: request) { response in
             switch response.result {
             case let .success(fileURL):
@@ -63,8 +67,12 @@ struct Network {
 
     // Data Upload
     @discardableResult
-    private func upload(_ convertible: URLRequestConvertible, multipartFormData: MultipartFormData, progress: @escaping Request.ProgressHandler, completion: @escaping (Data?, Error?) -> Void) -> Cancellable {
-        let request = session.upload(multipartFormData: multipartFormData, with: convertible).uploadProgress(closure: progress)
+    func upload(_ convertible: URLRequestConvertible, multipartFormData: MultipartFormData, progress: ProgressHandler?, completion: @escaping (Data?, Error?) -> Void) -> Cancellable {
+        var request = session.upload(multipartFormData: multipartFormData, with: convertible)
+        if let progress = progress {
+            request = request.uploadProgress(closure: progress)
+        }
+        
         return UploadManager.instance.addOperation(request: request) { response in
             switch response.result {
             case let .success(data):
@@ -88,13 +96,13 @@ extension Network {
     }
 
     @discardableResult
-    func download<T: TargetType>(targetType: T, progress: @escaping ProgressHandler, destination: Destination, completion: @escaping (URL?, Error?) -> Void) -> Cancellable {
+    func download<T: TargetType>(targetType: T, progress: ProgressHandler?, destination: Destination, completion: @escaping (URL?, Error?) -> Void) -> Cancellable {
         let endpoint = Endpoint(targetType: targetType)
         return download(endpoint, progress: progress, destination: destination, completion: completion)
     }
 
     @discardableResult
-    func upload<T: TargetType>(targetType: T, multipartFormData: MultipartFormData, progress: @escaping ProgressHandler, completion: @escaping (Data?, Error?) -> Void) -> Cancellable {
+    func upload<T: TargetType>(targetType: T, multipartFormData: MultipartFormData, progress: ProgressHandler?, completion: @escaping (Data?, Error?) -> Void) -> Cancellable {
         let endpoint = Endpoint(targetType: targetType)
         return upload(endpoint, multipartFormData: multipartFormData, progress: progress, completion: completion)
     }
@@ -112,7 +120,7 @@ extension Network {
     }
     
     @discardableResult
-    func upload<T, H>(targetType: T, atKeyPath keyPath: String? = nil, multipartFormData: MultipartFormData, progress: @escaping ProgressHandler, completion: @escaping (Result<H, Error>) -> Void) -> Cancellable where T: TargetType, H: Decodable {
+    func upload<T, H>(targetType: T, atKeyPath keyPath: String? = nil, multipartFormData: MultipartFormData, progress: ProgressHandler?, completion: @escaping (Result<H, Error>) -> Void) -> Cancellable where T: TargetType, H: Decodable {
         let cancellable = upload(targetType: targetType, multipartFormData: multipartFormData, progress: progress) { data, error in
             completion(self.decodeResponse(response: (data, error), atKeyPath: keyPath))
         }
@@ -140,7 +148,7 @@ extension Network {
         }
     }
     
-    func rxDownload<T>(targetType: T, progress: @escaping ProgressHandler, destination: @escaping Destination) -> Observable<URL> where T: TargetType {
+    func rxDownload<T>(targetType: T, progress: ProgressHandler?, destination: @escaping Destination) -> Observable<URL> where T: TargetType {
         return Observable<URL>.create { (observer) -> Disposable in
             let cancelable = self.download(targetType: targetType, progress: progress, destination: destination) { (url, error) in
                 if let err = error {
@@ -156,7 +164,7 @@ extension Network {
         }
     }
     
-    func rxUpload<T, H>(targetType: T, atKeyPath keyPath: String? = nil, multipartFormData: MultipartFormData, progress: @escaping ProgressHandler) -> Observable<H> where T: TargetType, H: Decodable {
+    func rxUpload<T, H>(targetType: T, atKeyPath keyPath: String? = nil, multipartFormData: MultipartFormData, progress: ProgressHandler?) -> Observable<H> where T: TargetType, H: Decodable {
         return Observable<H>.create { (observer) -> Disposable in
             let cancelable = self.upload(targetType: targetType, atKeyPath: keyPath, multipartFormData: multipartFormData, progress: progress) { (result: Result<H, Error>) in
                 switch result {

@@ -44,42 +44,9 @@ final class MoviesViewController: BaseViewController, NavigationBarVisible {
 
         DownloadManager.instance.maxConcurrentRequest = 2
         
-//        network.download(URL(string: "https://upload.wikimedia.org/wikipedia/commons/f/ff/Pizigani_1367_Chart_10MB.jpg")!, progress: { _ in
-////            print("Download Progress: \(progress.fractionCompleted)")
-//        }, destination: DownloadRequest.suggestedDownloadDestination()) { url, error in
-//            print(url)
-//            print(error)
-//        }
-//        network.download(URL(string: "https://upload.wikimedia.org/wikipedia/commons/f/ff/Pizigani_1367_Chart_10MB.jpg")!, progress: { _ in
-//            //            print("Download Progress: \(progress.fractionCompleted)")
-//        }, destination: DownloadRequest.suggestedDownloadDestination()) { url, error in
-//            print(url)
-//            print(error)
-//        }
-//        network.download(URL(string: "https://upload.wikimedia.org/wikipedia/commons/f/ff/Pizigani_1367_Chart_10MB.jpg")!, progress: { _ in
-//            //            print("Download Progress: \(progress.fractionCompleted)")
-//        }, destination: DownloadRequest.suggestedDownloadDestination()) { url, error in
-//            print(url)
-//            print(error)
-//        }
-//        network.download(URL(string: "https://upload.wikimedia.org/wikipedia/commons/f/ff/Pizigani_1367_Chart_10MB.jpg")!, progress: { _ in
-//            //            print("Download Progress: \(progress.fractionCompleted)")
-//        }, destination: DownloadRequest.suggestedDownloadDestination()) { url, error in
-//            print(url)
-//            print(error)
-//        }
-//        network.download(URL(string: "https://upload.wikimedia.org/wikipedia/commons/f/ff/Pizigani_1367_Chart_10MB.jpg")!, progress: { _ in
-//            //            print("Download Progress: \(progress.fractionCompleted)")
-//        }, destination: DownloadRequest.suggestedDownloadDestination()) { url, error in
-//            print(url)
-//            print(error)
-//        }
-//        network.download(URL(string: "https://upload.wikimedia.org/wikipedia/commons/f/ff/Pizigani_1367_Chart_10MB.jpg")!, progress: { _ in
-//            //            print("Download Progress: \(progress.fractionCompleted)")
-//        }, destination: DownloadRequest.suggestedDownloadDestination()) { url, error in
-//            print(url)
-//            print(error)
-//        }
+        service.getImage(progress: { (pro) in
+            log.debug("\(pro.fractionCompleted)")
+            }, destination: DownloadRequest.suggestedDownloadDestination()).subscribe().disposed(by: disposeBag)
     }
 }
 

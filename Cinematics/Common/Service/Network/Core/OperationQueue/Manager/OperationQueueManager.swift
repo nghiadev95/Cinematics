@@ -10,7 +10,7 @@ import Foundation
 
 class OperationQueueManager {
     let operationQueue = OperationQueue()
-    var operationList: [String: ConcurrentOperation] = [:]
+    var operationList: [String: AsynchronousOperation] = [:]
 
     var maxConcurrentRequest: Int = 5 {
         didSet {

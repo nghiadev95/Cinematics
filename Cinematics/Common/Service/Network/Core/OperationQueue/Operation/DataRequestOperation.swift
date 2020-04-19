@@ -1,5 +1,5 @@
 //
-//  UploadOperator.swift
+//  DataRequestOperation.swift
 //  Cinematics
 //
 //  Created by Nghia Nguyen on 4/19/20.
@@ -9,21 +9,16 @@
 import Alamofire
 import Foundation
 
-class UploadOperator: ConcurrentOperation {
-    let operationID: String
-    let request: UploadRequest
+class DataRequestOperation: RequestOperation {
+    var request: DataRequest?
 
-    init(operationID: String, request: UploadRequest) {
-        self.operationID = operationID
+    init(operationID: String, request: DataRequest?) {
+        super.init(operationID: operationID)
         self.request = request
     }
 
-    deinit {
-        log.debug("\(self.className) - operationID: \(operationID) - deinit got called")
-    }
-
     override func main() {
-        request.response { [weak self] dataResponse in
+        request?.response { [weak self] dataResponse in
             guard let self = self else { return }
             self.completionHandler?(self.operationID, dataResponse)
             self.finish()
@@ -33,7 +28,7 @@ class UploadOperator: ConcurrentOperation {
     var completionHandler: ((String, AFDataResponse<Data?>) -> Void)?
 
     override func cancel() {
-        request.cancel()
+        request?.cancel()
         super.cancel()
     }
 }

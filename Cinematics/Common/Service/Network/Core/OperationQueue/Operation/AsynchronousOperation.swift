@@ -1,5 +1,5 @@
 //
-//  ConcurrentOperation.swift
+//  AsynchronousOperation.swift
 //  Cinematics
 //
 //  Created by Nghia Nguyen on 4/15/20.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ConcurrentOperation: Operation {
+class AsynchronousOperation: Operation {
     enum State: String {
         case ready, executing, finished
 
