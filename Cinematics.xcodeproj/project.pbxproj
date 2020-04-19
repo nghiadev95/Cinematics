@@ -110,6 +110,11 @@
 		3BBD3169244057DB005008B1 /* HasLoadingIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBD3168244057DB005008B1 /* HasLoadingIndicator.swift */; };
 		3BBD316B2440585B005008B1 /* BaseUILabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBD316A2440585B005008B1 /* BaseUILabel.swift */; };
 		3BBD317124405935005008B1 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BBD316F24405935005008B1 /* LoadingView.swift */; };
+		3BC2B17E244C044E00D26A3C /* RequestCancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC2B17D244C044E00D26A3C /* RequestCancellable.swift */; };
+		3BC2B180244C047100D26A3C /* DownloadCancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC2B17F244C047100D26A3C /* DownloadCancellable.swift */; };
+		3BC2B182244C073500D26A3C /* UploadOperator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC2B181244C073500D26A3C /* UploadOperator.swift */; };
+		3BC2B184244C07F000D26A3C /* UploadCancellable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC2B183244C07F000D26A3C /* UploadCancellable.swift */; };
+		3BC2B186244C2FD900D26A3C /* JSONDecoder+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BC2B185244C2FD900D26A3C /* JSONDecoder+Ext.swift */; };
 		3BF202C624445B72006666EA /* Then in Frameworks */ = {isa = PBXBuildFile; productRef = 3BF202C524445B72006666EA /* Then */; };
 		3BF202CA244461BA006666EA /* TrendingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3BF202C8244461BA006666EA /* TrendingCell.swift */; };
 		3BF202CB244461BA006666EA /* TrendingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3BF202C9244461BA006666EA /* TrendingCell.xib */; };
@@ -217,6 +222,11 @@
 		3BBD3168244057DB005008B1 /* HasLoadingIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HasLoadingIndicator.swift; sourceTree = "<group>"; };
 		3BBD316A2440585B005008B1 /* BaseUILabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseUILabel.swift; sourceTree = "<group>"; };
 		3BBD316F24405935005008B1 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		3BC2B17D244C044E00D26A3C /* RequestCancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestCancellable.swift; sourceTree = "<group>"; };
+		3BC2B17F244C047100D26A3C /* DownloadCancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadCancellable.swift; sourceTree = "<group>"; };
+		3BC2B181244C073500D26A3C /* UploadOperator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadOperator.swift; sourceTree = "<group>"; };
+		3BC2B183244C07F000D26A3C /* UploadCancellable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadCancellable.swift; sourceTree = "<group>"; };
+		3BC2B185244C2FD900D26A3C /* JSONDecoder+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "JSONDecoder+Ext.swift"; sourceTree = "<group>"; };
 		3BF202C8244461BA006666EA /* TrendingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrendingCell.swift; sourceTree = "<group>"; };
 		3BF202C9244461BA006666EA /* TrendingCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TrendingCell.xib; sourceTree = "<group>"; };
 		3BF202CC24446A60006666EA /* AuthenticationAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationAdapter.swift; sourceTree = "<group>"; };
@@ -251,6 +261,7 @@
 				3B06DC902446D9B800F467A7 /* URLRequest+Ext.swift */,
 				3B06DC922446D9CE00F467A7 /* Data+Ext.swift */,
 				3B2B6C9B244567A60098F00F /* AlamofirePackage.swift */,
+				3BC2B185244C2FD900D26A3C /* JSONDecoder+Ext.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -586,6 +597,7 @@
 			children = (
 				3B06DC972446DA6900F467A7 /* RequestOperation.swift */,
 				3B7D2315244846CA004532F0 /* RequestManager.swift */,
+				3BC2B17D244C044E00D26A3C /* RequestCancellable.swift */,
 			);
 			path = Request;
 			sourceTree = "<group>";
@@ -595,6 +607,7 @@
 			children = (
 				3B8EAF5524485F2200D36332 /* DownloadOperator.swift */,
 				3B06DC992446DBBE00F467A7 /* DownloadManager.swift */,
+				3BC2B17F244C047100D26A3C /* DownloadCancellable.swift */,
 			);
 			path = Download;
 			sourceTree = "<group>";
@@ -602,7 +615,9 @@
 		3BB9E4AE24489D6000B08047 /* Upload */ = {
 			isa = PBXGroup;
 			children = (
+				3BC2B181244C073500D26A3C /* UploadOperator.swift */,
 				3B7D2317244846E1004532F0 /* UploadManager.swift */,
+				3BC2B183244C07F000D26A3C /* UploadCancellable.swift */,
 			);
 			path = Upload;
 			sourceTree = "<group>";
@@ -834,6 +849,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3BC2B186244C2FD900D26A3C /* JSONDecoder+Ext.swift in Sources */,
 				3BBD316024405658005008B1 /* NavigationBarVisible.swift in Sources */,
 				3BF202CD24446A60006666EA /* AuthenticationAdapter.swift in Sources */,
 				3B45281924406960009FAC84 /* OnboardInteractor.swift in Sources */,
@@ -841,12 +857,14 @@
 				3BF202CA244461BA006666EA /* TrendingCell.swift in Sources */,
 				3B856A2B243C897700B079B9 /* CrashReporterInitializer.swift in Sources */,
 				3BBD316B2440585B005008B1 /* BaseUILabel.swift in Sources */,
+				3BC2B184244C07F000D26A3C /* UploadCancellable.swift in Sources */,
 				3B856A1E243C5ADE00B079B9 /* Network.swift in Sources */,
 				3B4290A52444BB060075E1E3 /* NetworkError.swift in Sources */,
 				3B45281624406960009FAC84 /* OnboardPresenter.swift in Sources */,
 				3B45281724406960009FAC84 /* OnboardViewController.swift in Sources */,
 				3B75B9E024441FE600219CE4 /* MainTabBarWireframe.swift in Sources */,
 				3B75B9D224441E1100219CE4 /* ProfileInterfaces.swift in Sources */,
+				3BC2B17E244C044E00D26A3C /* RequestCancellable.swift in Sources */,
 				3B75B9DF24441FE600219CE4 /* MainTabBarInteractor.swift in Sources */,
 				3B856A02243C344400B079B9 /* PluggableApplicationDelegate.swift in Sources */,
 				3B2B6C95244557720098F00F /* MoviesService.swift in Sources */,
@@ -872,6 +890,7 @@
 				3BBD3156244055AB005008B1 /* UIButton.swift in Sources */,
 				3B856A14243C3BE100B079B9 /* CoreDataService.swift in Sources */,
 				3BBD315A244055F8005008B1 /* UIViewController.swift in Sources */,
+				3BC2B182244C073500D26A3C /* UploadOperator.swift in Sources */,
 				3B75B9DD24441FE600219CE4 /* MainTabBarPresenter.swift in Sources */,
 				3B75B9BC24441DFA00219CE4 /* MoviesViewController.swift in Sources */,
 				3BBD314E24405434005008B1 /* BaseCollectionViewCell.swift in Sources */,
@@ -923,6 +942,7 @@
 				3B42909E2444ADCB0075E1E3 /* RatedCell.swift in Sources */,
 				3B75B9E624444B3500219CE4 /* MovieListView.swift in Sources */,
 				3BBD315224405466005008B1 /* BaseViewController.swift in Sources */,
+				3BC2B180244C047100D26A3C /* DownloadCancellable.swift in Sources */,
 				3B75B9DE24441FE600219CE4 /* MainTabBarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

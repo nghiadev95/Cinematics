@@ -14,7 +14,7 @@ protocol MoviesServicing {
 }
 
 struct MoviesService: MoviesServicing {
-    let network: Networking
+    let network: Network
     
     init() {
         network = Network(config: NetworkConfig.defaultInstance())

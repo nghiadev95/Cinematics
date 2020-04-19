@@ -74,7 +74,7 @@ class RequestManager: BaseOperationManager {
         requestCallbackMapping.removeValue(forKey: requestID)
     }
     
-    func removeCompletedOperation(id: String) {
+    private func removeCompletedOperation(id: String) {
         // Remove operation
         operationList.removeValue(forKey: id)
         // remove all RequestIDs mapping with this OperationID

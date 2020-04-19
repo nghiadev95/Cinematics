@@ -1,19 +1,19 @@
 //
-//  DownloadOperator.swift
+//  UploadOperator.swift
 //  Cinematics
 //
-//  Created by Nghia Nguyen on 4/16/20.
+//  Created by Nghia Nguyen on 4/19/20.
 //  Copyright © 2020 Nghia Nguyen. All rights reserved.
 //
 
-import Foundation
 import Alamofire
+import Foundation
 
-class DownloadOperator: ConcurrentOperation {
+class UploadOperator: ConcurrentOperation {
     let operationID: String
-    let request: DownloadRequest
+    let request: UploadRequest
 
-    init(operationID: String, request: DownloadRequest) {
+    init(operationID: String, request: UploadRequest) {
         self.operationID = operationID
         self.request = request
     }
@@ -30,11 +30,10 @@ class DownloadOperator: ConcurrentOperation {
         }
     }
 
-    var completionHandler: ((String, AFDownloadResponse<URL?>) -> Void)?
+    var completionHandler: ((String, AFDataResponse<Data?>) -> Void)?
 
     override func cancel() {
         request.cancel()
         super.cancel()
     }
 }
-

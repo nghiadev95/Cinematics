@@ -7,19 +7,33 @@
 //
 
 import Foundation
+import Alamofire
 
 class DownloadManager: BaseOperationManager {
     private override init() {}
-
+    
     static let instance = DownloadManager()
 
-//    override func addRequest(cancellable: Cancellable, responseHandler: @escaping DataResponseHandler) {
-//        let operation = NetworkOperation(cancelable: Cancellable(requestId: id, dataRequest: request))
-//        operation.completionHandler = { [weak self] completedRequestId, response in
-//            responseHandler(response)
-//            self?.operationList.removeValue(forKey: completedRequestId)
-//        }
-//        operationQueue.addOperation(operation)
-//        operationList[id] = operation
-//    }
+    open func addOperation(request: DownloadRequest, responseHandler: @escaping (AFDownloadResponse<URL?>) -> Void) -> Cancellable {
+        // 1. Create UUID for each Operation
+        let operationID = UUID().uuidString
+        // 2. Create DownloadOperator
+        let operation = DownloadOperator(operationID: operationID, request: request)
+        // 3. When Operation completed
+        //      - Execute callback
+        //      - Remove completed Operation
+        operation.completionHandler = { [weak self] completedOperationID, response in
+            responseHandler(response)
+            self?.operationList.removeValue(forKey: completedOperationID)
+        }
+        // 4. Add Operation into operationQueue
+        operationQueue.addOperation(operation)
+        // 5. Save Operation into operationList, using for cancel
+        operationList[operationID] = operation
+        return DownloadCancellable(operationID: operationID)
+    }
+    
+    func removeDownload(operationID: String) {
+        operationList.removeValue(forKey: operationID)?.cancel()
+    }
 }
