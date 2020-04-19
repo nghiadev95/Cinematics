@@ -11,7 +11,7 @@ import RxSwift
 
 protocol MoviesServicing {
     func getTrendingMovie() -> Observable<TrendingResponse>
-    func getImage(progress: ProgressHandler?, destination: @escaping Destination) -> Observable<URL>
+    func getImage(progress: ProgressHandler?) -> Observable<URL>
 }
 
 struct MoviesService: MoviesServicing {
@@ -25,7 +25,7 @@ struct MoviesService: MoviesServicing {
         return network.rxRequest(targetType: MoviesTarget.trending)
     }
     
-    func getImage(progress: ProgressHandler?, destination: @escaping Destination) -> Observable<URL> {
-        return network.rxDownload(targetType: MoviesTarget.download, progress: progress, destination: destination)
+    func getImage(progress: ProgressHandler?) -> Observable<URL> {
+        return network.rxDownload(targetType: MoviesTarget.download, progress: progress)
     }
 }

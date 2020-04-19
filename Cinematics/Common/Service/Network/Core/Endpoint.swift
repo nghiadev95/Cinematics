@@ -36,10 +36,10 @@ class Endpoint: URLRequestConvertible {
             return try request.encoded(encodable: encodable, encoder: encoder)
         case let .requestParameters(parameters, parameterEncoding):
             return try request.encoded(parameters: parameters, parameterEncoding: parameterEncoding)
-        case let .uploadCompositeMultipart(urlParameters):
+        case let .uploadCompositeMultipart(_, urlParameters):
             let parameterEncoding = URLEncoding(destination: .queryString)
             return try request.encoded(parameters: urlParameters, parameterEncoding: parameterEncoding)
-        case let .downloadParameters(parameters, parameterEncoding):
+        case let .downloadParameters(parameters, parameterEncoding, _):
             return try request.encoded(parameters: parameters, parameterEncoding: parameterEncoding)
         case let .requestCompositeParameters(bodyParameters: bodyParameters, bodyEncoding: bodyParameterEncoding, urlParameters: urlParameters):
             if let bodyParameterEncoding = bodyParameterEncoding as? URLEncoding, bodyParameterEncoding.destination != .httpBody {

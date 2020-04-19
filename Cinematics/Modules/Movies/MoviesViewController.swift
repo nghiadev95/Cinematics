@@ -46,7 +46,7 @@ final class MoviesViewController: BaseViewController, NavigationBarVisible {
         
         service.getImage(progress: { (pro) in
             log.debug("\(pro.fractionCompleted)")
-            }, destination: DownloadRequest.suggestedDownloadDestination()).subscribe().disposed(by: disposeBag)
+            }).subscribe().disposed(by: disposeBag)
     }
 }
 

@@ -46,7 +46,7 @@ extension MoviesTarget: TargetType {
         case .trending:
             return .requestPlain
         case .download:
-            return .downloadDestination
+            return .downloadDestination(DownloadRequest.suggestedDownloadDestination())
         }
     }
 }
