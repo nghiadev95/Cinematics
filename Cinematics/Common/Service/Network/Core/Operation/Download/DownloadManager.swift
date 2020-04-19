@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class DownloadManager: BaseOperationManager {
+class DownloadManager: OperationQueueManager {
     private override init() {}
     
     static let instance = DownloadManager()

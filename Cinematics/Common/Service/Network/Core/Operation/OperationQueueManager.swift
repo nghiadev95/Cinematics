@@ -1,17 +1,14 @@
 //
-//  BaseOperationManager.swift
+//  OperationQueueManager.swift
 //  Cinematics
 //
 //  Created by Nghia Nguyen on 4/16/20.
 //  Copyright © 2020 Nghia Nguyen. All rights reserved.
 //
 
-import Alamofire
 import Foundation
 
-typealias DataResponseHandler = (AFDataResponse<Data?>) -> Void
-
-class BaseOperationManager {
+class OperationQueueManager {
     let operationQueue = OperationQueue()
     var operationList: [String: ConcurrentOperation] = [:]
 

@@ -9,7 +9,7 @@
 import Alamofire
 import Foundation
 
-class UploadManager: BaseOperationManager {
+class UploadManager: OperationQueueManager {
     private override init() {}
 
     static let instance = UploadManager()

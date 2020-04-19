@@ -7,8 +7,11 @@
 //
 
 import Foundation
+import Alamofire
 
-class RequestManager: BaseOperationManager {
+typealias DataResponseHandler = (AFDataResponse<Data?>) -> Void
+
+class RequestManager: OperationQueueManager {
     private override init() {}
 
     static let instance = RequestManager()
