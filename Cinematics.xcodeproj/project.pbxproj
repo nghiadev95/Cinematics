@@ -9,13 +9,12 @@
 /* Begin PBXBuildFile section */
 		3B06DC8F2446D9A300F467A7 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B06DC8E2446D9A300F467A7 /* AnyEncodable.swift */; };
 		3B06DC912446D9B800F467A7 /* URLRequest+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B06DC902446D9B800F467A7 /* URLRequest+Ext.swift */; };
-		3B06DC932446D9CE00F467A7 /* Data+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B06DC922446D9CE00F467A7 /* Data+Ext.swift */; };
 		3B06DC962446DA5100F467A7 /* AsynchronousOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B06DC952446DA5100F467A7 /* AsynchronousOperation.swift */; };
 		3B06DC9A2446DBBE00F467A7 /* DownloadManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B06DC992446DBBE00F467A7 /* DownloadManager.swift */; };
 		3B2B6C95244557720098F00F /* MoviesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2B6C94244557720098F00F /* MoviesService.swift */; };
 		3B2B6C98244559E10098F00F /* Trending.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2B6C97244559E10098F00F /* Trending.swift */; };
 		3B2B6C9A244565740098F00F /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2B6C99244565740098F00F /* NetworkLogger.swift */; };
-		3B2B6C9C244567A60098F00F /* AlamofirePackage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2B6C9B244567A60098F00F /* AlamofirePackage.swift */; };
+		3B2B6C9C244567A60098F00F /* AlamofireBridgeTypeAlias.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2B6C9B244567A60098F00F /* AlamofireBridgeTypeAlias.swift */; };
 		3B2B6C9F244585340098F00F /* NetworkConfig+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2B6C9E244585340098F00F /* NetworkConfig+Ext.swift */; };
 		3B2B6CA12445904B0098F00F /* NetworkConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B2B6CA02445904B0098F00F /* NetworkConfig.swift */; };
 		3B42909E2444ADCB0075E1E3 /* RatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B42909C2444ADCB0075E1E3 /* RatedCell.swift */; };
@@ -126,13 +125,12 @@
 /* Begin PBXFileReference section */
 		3B06DC8E2446D9A300F467A7 /* AnyEncodable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
 		3B06DC902446D9B800F467A7 /* URLRequest+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URLRequest+Ext.swift"; sourceTree = "<group>"; };
-		3B06DC922446D9CE00F467A7 /* Data+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data+Ext.swift"; sourceTree = "<group>"; };
 		3B06DC952446DA5100F467A7 /* AsynchronousOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsynchronousOperation.swift; sourceTree = "<group>"; };
 		3B06DC992446DBBE00F467A7 /* DownloadManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadManager.swift; sourceTree = "<group>"; };
 		3B2B6C94244557720098F00F /* MoviesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesService.swift; sourceTree = "<group>"; };
 		3B2B6C97244559E10098F00F /* Trending.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trending.swift; sourceTree = "<group>"; };
 		3B2B6C99244565740098F00F /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
-		3B2B6C9B244567A60098F00F /* AlamofirePackage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofirePackage.swift; sourceTree = "<group>"; };
+		3B2B6C9B244567A60098F00F /* AlamofireBridgeTypeAlias.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlamofireBridgeTypeAlias.swift; sourceTree = "<group>"; };
 		3B2B6C9E244585340098F00F /* NetworkConfig+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkConfig+Ext.swift"; sourceTree = "<group>"; };
 		3B2B6CA02445904B0098F00F /* NetworkConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkConfig.swift; sourceTree = "<group>"; };
 		3B42909C2444ADCB0075E1E3 /* RatedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatedCell.swift; sourceTree = "<group>"; };
@@ -263,8 +261,7 @@
 				3B4290A62444BBA10075E1E3 /* Response.swift */,
 				3B06DC8E2446D9A300F467A7 /* AnyEncodable.swift */,
 				3B06DC902446D9B800F467A7 /* URLRequest+Ext.swift */,
-				3B06DC922446D9CE00F467A7 /* Data+Ext.swift */,
-				3B2B6C9B244567A60098F00F /* AlamofirePackage.swift */,
+				3B2B6C9B244567A60098F00F /* AlamofireBridgeTypeAlias.swift */,
 				3BC2B185244C2FD900D26A3C /* JSONDecoder+Ext.swift */,
 			);
 			path = Other;
@@ -894,7 +891,6 @@
 				3B4290A12444B90D0075E1E3 /* Task.swift in Sources */,
 				3B75B9D324441E1100219CE4 /* ProfilePresenter.swift in Sources */,
 				3B75B9CA24441E0700219CE4 /* TVWireframe.swift in Sources */,
-				3B06DC932446D9CE00F467A7 /* Data+Ext.swift in Sources */,
 				3BBD31502440544D005008B1 /* BaseTableViewCell.swift in Sources */,
 				3B856A19243C590C00B079B9 /* TargetType.swift in Sources */,
 				3B856A12243C3A0D00B079B9 /* R.generated.swift in Sources */,
@@ -925,7 +921,7 @@
 				3BBD3165244056D0005008B1 /* AppFont.swift in Sources */,
 				3B7D2316244846CA004532F0 /* RequestManager.swift in Sources */,
 				3B856A00243C341000B079B9 /* ApplicationService.swift in Sources */,
-				3B2B6C9C244567A60098F00F /* AlamofirePackage.swift in Sources */,
+				3B2B6C9C244567A60098F00F /* AlamofireBridgeTypeAlias.swift in Sources */,
 				3B856A29243C841F00B079B9 /* UserDefaultService.swift in Sources */,
 				3B8569FA243C33A800B079B9 /* UIStoryboardExtension.swift in Sources */,
 				3B4290A92444BDC10075E1E3 /* Endpoint.swift in Sources */,

@@ -29,6 +29,7 @@ public typealias Retrier = Alamofire.Retrier
 public typealias RequestAdapter = Alamofire.RequestAdapter
 public typealias RequestRetrier = Alamofire.RequestRetrier
 public typealias RetryResult = Alamofire.RetryResult
+public typealias RetryPolicy = Alamofire.RetryPolicy
 
 public typealias ClosureEventMonitor = Alamofire.ClosureEventMonitor
 public typealias EventMonitor = Alamofire.EventMonitor
