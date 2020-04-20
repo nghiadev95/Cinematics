@@ -10,7 +10,7 @@ import Foundation
 
 struct NetworkQueueConfig {
     struct QueueConfig {
-        var maxConcurrentCount: Int = 1
+        var maxConcurrentCount: Int = 5
         var qualityOfService: QualityOfService = .background
     }
     var request: QueueConfig
