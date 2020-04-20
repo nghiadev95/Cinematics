@@ -25,6 +25,8 @@ final class BootApplicationManager: NSObject, BootApplicationService {
         
         initializers.forEach { $0.performInitialization() }
         
+        NetworkQueueManager.global().config(NetworkQueueConfig.default)
+        
         // MARK: Run app
         
         let initialController = UINavigationController()

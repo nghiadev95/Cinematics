@@ -42,11 +42,15 @@ final class MoviesViewController: BaseViewController, NavigationBarVisible {
 //        service.getTrendingMovie().debug("getTrendingMovie2", trimOutput: false).subscribe().disposed(by: disposeBag)
 //        service.getTrendingMovie().debug("getTrendingMovie3", trimOutput: false).subscribe().disposed(by: disposeBag)
 
-        DownloadManager.instance.maxConcurrentRequest = 2
-        
-        service.getImage(progress: { (pro) in
-            log.debug("\(pro.fractionCompleted)")
+        service.getImage(progress: { pro in
+            log.debug("1. \(pro.fractionCompleted)")
             }).subscribe().disposed(by: disposeBag)
+        service.getImage(progress: { pro in
+            log.debug("2. \(pro.fractionCompleted)")
+        }).subscribe().disposed(by: disposeBag)
+        service.getImage(progress: { pro in
+            log.debug("3. \(pro.fractionCompleted)")
+        }).subscribe().disposed(by: disposeBag)
     }
 }
 

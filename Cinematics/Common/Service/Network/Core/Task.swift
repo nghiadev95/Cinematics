@@ -34,8 +34,8 @@ public enum Task {
     case uploadCompositeMultipart(MultipartFormData, urlParameters: [String: Any])
 
     /// A file download task to a destination.
-    case downloadDestination(DownloadRequest.Destination)
+    case downloadDestination(Destination)
 
     /// A file download task to a destination with extra parameters using the given encoding.
-    case downloadParameters(parameters: [String: Any], encoding: ParameterEncoding, destination: DownloadRequest.Destination)
+    case downloadParameters(parameters: [String: Any], encoding: ParameterEncoding, destination: Destination)
 }
