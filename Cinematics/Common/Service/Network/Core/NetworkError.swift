@@ -12,9 +12,6 @@ import Foundation
 public enum NetworkError: Swift.Error {
     case `default`
 
-    /// Indicates a response failed to map to an image.
-    case imageMapping(Response)
-
     /// Indicates a response failed to map to a JSON structure.
     case jsonMapping(Response)
 
@@ -39,7 +36,6 @@ public extension NetworkError {
     var response: Response? {
         switch self {
         case .default: return nil
-        case .imageMapping(let response): return response
         case .jsonMapping(let response): return response
         case .objectMapping(_, let response): return response
         case .encodableMapping: return nil
@@ -53,7 +49,6 @@ public extension NetworkError {
     internal var underlyingError: Swift.Error? {
         switch self {
         case .default: return nil
-        case .imageMapping: return nil
         case .jsonMapping: return nil
         case .objectMapping(let error, _): return error
         case .encodableMapping(let error): return error
@@ -71,8 +66,6 @@ extension NetworkError: LocalizedError {
         switch self {
         case .default:
             return "Something went wrong"
-        case .imageMapping:
-            return "Failed to map data to an Image."
         case .jsonMapping:
             return "Failed to map data to JSON."
         case .objectMapping:

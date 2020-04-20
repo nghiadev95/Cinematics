@@ -257,6 +257,7 @@
 		3B06DC8D2446D99500F467A7 /* Other */ = {
 			isa = PBXGroup;
 			children = (
+				3B2B6C9E244585340098F00F /* NetworkConfig+Ext.swift */,
 				3B7D231024483F48004532F0 /* Cancellable.swift */,
 				3B4290A62444BBA10075E1E3 /* Response.swift */,
 				3B06DC8E2446D9A300F467A7 /* AnyEncodable.swift */,
@@ -556,7 +557,6 @@
 		3B856A1C243C5A9300B079B9 /* APIs */ = {
 			isa = PBXGroup;
 			children = (
-				3B2B6C9E244585340098F00F /* NetworkConfig+Ext.swift */,
 				3B2B6C93244557640098F00F /* Movies */,
 			);
 			path = APIs;
