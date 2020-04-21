@@ -13,11 +13,11 @@ struct NetworkQueueConfig {
         var maxConcurrentCount: Int = 5
         var qualityOfService: QualityOfService = .background
     }
-    var request: QueueConfig
-    var download: QueueConfig
-    var upload: QueueConfig
+    var request: QueueConfig = QueueConfig()
+    var download: QueueConfig = QueueConfig()
+    var upload: QueueConfig = QueueConfig()
     
-    static let `default` = NetworkQueueConfig(request: QueueConfig(), download: QueueConfig(), upload: QueueConfig())
+    static let `default` = NetworkQueueConfig()
 }
 
 enum NetworkQueueType {
