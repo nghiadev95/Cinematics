@@ -32,7 +32,7 @@ final class MoviesViewController: BaseViewController, NavigationBarVisible {
     // MARK: - Lifecycle -
 
     let service = MoviesService()
-    let network = Network(config: NetworkConfig.defaultInstance())
+    let network = Network(config: NetworkConfig.default())
 
     override func viewDidLoad() {
         super.viewDidLoad()

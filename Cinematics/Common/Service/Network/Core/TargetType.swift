@@ -22,7 +22,7 @@ protocol TargetType {
     var validationType: ValidationType { get }
 
     /// The headers to be used in the request.
-    var headers: [String: String]? { get }
+    var headers: HTTPHeaders? { get }
     
     /// The type of HTTP task to be performed.
     var task: Task { get }
@@ -33,7 +33,7 @@ extension TargetType {
         return .successCodes
     }
 
-    var headers: [String: String]? {
+    var headers: HTTPHeaders? {
         return nil
     }
 }

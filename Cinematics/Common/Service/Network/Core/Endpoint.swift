@@ -25,7 +25,7 @@ class Endpoint: URLRequestConvertible {
     func asURLRequest() throws -> URLRequest {
         var request = URLRequest(url: url)
         request.method = targetType.method
-        request.allHTTPHeaderFields = targetType.headers
+        request.allHTTPHeaderFields = targetType.headers?.dictionary
 
         switch targetType.task {
         case .requestPlain, .uploadMultipart, .downloadDestination:

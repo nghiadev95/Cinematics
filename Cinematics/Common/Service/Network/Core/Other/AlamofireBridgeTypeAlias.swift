@@ -10,12 +10,15 @@ import Alamofire
 
 public typealias Session = Alamofire.Session
 public typealias HTTPMethod = Alamofire.HTTPMethod
+public typealias HTTPHeader = Alamofire.HTTPHeader
+public typealias HTTPHeaders = Alamofire.HTTPHeaders
 
 public typealias DownloadRequest = Alamofire.DownloadRequest
 public typealias Destination = Alamofire.DownloadRequest.Destination
 public typealias ProgressHandler = Request.ProgressHandler
 public typealias URLRequestConvertible = Alamofire.URLRequestConvertible
 public typealias URLConvertible = Alamofire.URLConvertible
+public typealias MultipartFormData = Alamofire.MultipartFormData
 
 public typealias Request = Alamofire.Request
 public typealias DataRequest = Alamofire.DataRequest

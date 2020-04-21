@@ -53,7 +53,7 @@ struct Network {
         if let progress = progress {
             request = request.downloadProgress(closure: progress)
         }
-        
+
         return DownloadManager.instance.addOperation(request: request) { response in
             switch response.result {
             case let .success(fileURL):
@@ -72,7 +72,7 @@ struct Network {
         if let progress = progress {
             request = request.uploadProgress(closure: progress)
         }
-        
+
         return UploadManager.instance.addOperation(request: request) { response in
             switch response.result {
             case let .success(data):
@@ -90,42 +90,42 @@ extension Network {
 
     @discardableResult
     func request<T: TargetType>(targetType: T, completion: @escaping (Data?, Error?) -> Void) -> Cancellable {
-        return sendRequest(targetType: targetType, progress: nil) { (data, _, error) in
+        return sendRequest(targetType: targetType, progress: nil) { data, _, error in
             completion(data, error)
         }
     }
 
     @discardableResult
     func download<T: TargetType>(targetType: T, progress: ProgressHandler?, completion: @escaping (URL?, Error?) -> Void) -> Cancellable {
-        return sendRequest(targetType: targetType, progress: progress) { (_, url, error) in
+        return sendRequest(targetType: targetType, progress: progress) { _, url, error in
             completion(url, error)
         }
     }
 
     @discardableResult
     func upload<T: TargetType>(targetType: T, progress: ProgressHandler?, completion: @escaping (Data?, Error?) -> Void) -> Cancellable {
-        return sendRequest(targetType: targetType, progress: progress) { (data, _, error) in
+        return sendRequest(targetType: targetType, progress: progress) { data, _, error in
             completion(data, error)
         }
     }
-    
+
     @discardableResult
     private func sendRequest<T: TargetType>(targetType: T, progress: ProgressHandler?, completion: @escaping (Data?, URL?, Error?) -> Void) -> Cancellable {
         switch targetType.task {
-        case .downloadDestination(let destination), .downloadParameters(_, _, let destination):
+        case let .downloadDestination(destination), let .downloadParameters(_, _, destination):
             let endpoint = Endpoint(targetType: targetType)
-            return download(endpoint, progress: progress, destination: destination) { (url, error) in
+            return download(endpoint, progress: progress, destination: destination) { url, error in
                 completion(nil, url, error)
             }
-        case .uploadMultipart(let multipartBody), .uploadCompositeMultipart(let multipartBody, _):
+        case let .uploadMultipart(multipartBody), let .uploadCompositeMultipart(multipartBody, _):
             let endpoint = Endpoint(targetType: targetType)
-            return upload(endpoint, multipartFormData: multipartBody, progress: progress) { (data, error) in
+            return upload(endpoint, multipartFormData: multipartBody, progress: progress) { data, error in
                 completion(data, nil, error)
             }
         case .requestPlain, .requestJSONEncodable, .requestCustomJSONEncodable, .requestParameters, .requestCompositeParameters:
             let endpoint = Endpoint(targetType: targetType)
             let validationStatusCodes = endpoint.targetType.validationType.statusCodes
-            return request(endpoint, statusCodes: validationStatusCodes) { (data, error) in
+            return request(endpoint, statusCodes: validationStatusCodes) { data, error in
                 completion(data, nil, error)
             }
         }
@@ -133,28 +133,34 @@ extension Network {
 }
 
 extension Network {
-    // MARK: Support Codable
+    // MARK: Support Codable Response
 
     @discardableResult
     func request<T, H>(targetType: T, atKeyPath keyPath: String? = nil, completion: @escaping (Result<H, Error>) -> Void) -> Cancellable where T: TargetType, H: Decodable {
-        let cancellable = request(targetType: targetType) { data, error in
-            completion(self.decodeResponse(response: (data, error), atKeyPath: keyPath))
+        return request(targetType: targetType) { data, error in
+            if let err = error {
+                completion(.failure(err))
+            } else {
+                completion(self.decodeResponse(data: data, atKeyPath: keyPath))
+            }
         }
-        return cancellable
     }
-    
+
     @discardableResult
     func upload<T, H>(targetType: T, atKeyPath keyPath: String? = nil, progress: ProgressHandler?, completion: @escaping (Result<H, Error>) -> Void) -> Cancellable where T: TargetType, H: Decodable {
-        let cancellable = upload(targetType: targetType, progress: progress) { data, error in
-            completion(self.decodeResponse(response: (data, error), atKeyPath: keyPath))
+        return upload(targetType: targetType, progress: progress) { data, error in
+            if let err = error {
+                completion(.failure(err))
+            } else {
+                completion(self.decodeResponse(data: data, atKeyPath: keyPath))
+            }
         }
-        return cancellable
     }
 }
 
 extension Network {
     // MARK: Support Reactive Programming
-    
+
     func rxRequest<T, H>(targetType: T, atKeyPath keyPath: String? = nil) -> Observable<H> where T: TargetType, H: Decodable {
         return Observable<H>.create { (observer) -> Disposable in
             let cancelable = self.request(targetType: targetType, atKeyPath: keyPath) { (result: Result<H, Error>) in
@@ -171,10 +177,10 @@ extension Network {
             }
         }
     }
-    
+
     func rxDownload<T>(targetType: T, progress: ProgressHandler?) -> Observable<URL> where T: TargetType {
         return Observable<URL>.create { (observer) -> Disposable in
-            let cancelable = self.download(targetType: targetType, progress: progress) { (url, error) in
+            let cancelable = self.download(targetType: targetType, progress: progress) { url, error in
                 if let err = error {
                     observer.onError(err)
                 } else {
@@ -187,7 +193,7 @@ extension Network {
             }
         }
     }
-    
+
     func rxUpload<T, H>(targetType: T, atKeyPath keyPath: String? = nil, progress: ProgressHandler?) -> Observable<H> where T: TargetType, H: Decodable {
         return Observable<H>.create { (observer) -> Disposable in
             let cancelable = self.upload(targetType: targetType, atKeyPath: keyPath, progress: progress) { (result: Result<H, Error>) in
@@ -206,25 +212,20 @@ extension Network {
     }
 }
 
-
 extension Network {
     // MARK: Helper
-    
-    private func decodeResponse<H: Decodable>(response: (data: Data?, error: Error?), atKeyPath keyPath: String? = nil) -> Result<H, Error> {
-        if let err = response.error {
-            return .failure(err)
-        } else {
-            do {
-                let resultObject: H
-                if let keyPath = keyPath {
-                    resultObject = try self.decoder.decode(H.self, from: response.data!, keyPath: keyPath)
-                } else {
-                    resultObject = try self.decoder.decode(H.self, from: response.data!)
-                }
-                return .success(resultObject)
-            } catch let mapError {
-                return .failure(mapError)
+
+    private func decodeResponse<H: Decodable>(data: Data?, atKeyPath keyPath: String? = nil) -> Result<H, Error> {
+        do {
+            let resultObject: H
+            if let keyPath = keyPath {
+                resultObject = try decoder.decode(H.self, from: data ?? Data(), keyPath: keyPath)
+            } else {
+                resultObject = try decoder.decode(H.self, from: data ?? Data())
             }
+            return .success(resultObject)
+        } catch {
+            return .failure(NetworkError.objectMapping(error, nil))
         }
     }
 }
