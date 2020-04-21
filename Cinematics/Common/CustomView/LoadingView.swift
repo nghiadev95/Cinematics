@@ -10,7 +10,14 @@ import UIKit
 import SnapKit
 
 class LoadingView: UIView {
-    let activityIndicatorView = UIActivityIndicatorView(style: .medium)
+    let activityIndicatorView: UIActivityIndicatorView = {
+        if #available(iOS 13, *) {
+            return UIActivityIndicatorView(style: .medium)
+        } else {
+            return UIActivityIndicatorView(style: .gray)
+        }
+    }()
+        
     
     override init(frame: CGRect) {
         super.init(frame: frame)
