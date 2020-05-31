@@ -1,5 +1,5 @@
 //
-//  ProfileInteractor.swift
+//  TVSeriesInteractor.swift
 //  Cinematics
 //
 //  Created by Nghia Nguyen on 5/31/20.
@@ -9,11 +9,12 @@
 //
 
 import Foundation
+import RxSwift
 
-final class ProfileInteractor {
+final class TVSeriesInteractor {
 }
 
 // MARK: - Extensions -
 
-extension ProfileInteractor: ProfileInteractorInterface {
+extension TVSeriesInteractor: TVSeriesInteractorInterface {
 }

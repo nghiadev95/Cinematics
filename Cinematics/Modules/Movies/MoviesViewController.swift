@@ -31,26 +31,9 @@ final class MoviesViewController: BaseViewController, NavigationBarVisible {
 
     // MARK: - Lifecycle -
 
-    let service = MoviesService()
-    let network = Network(config: NetworkConfig.default())
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
-//        service.getTrendingMovie().debug("getTrendingMovie", trimOutput: false).subscribe().disposed(by: disposeBag)
-//        service.getTrendingMovie().debug("getTrendingMovie1", trimOutput: false).subscribe().disposed(by: disposeBag)
-//        service.getTrendingMovie().debug("getTrendingMovie2", trimOutput: false).subscribe().disposed(by: disposeBag)
-//        service.getTrendingMovie().debug("getTrendingMovie3", trimOutput: false).subscribe().disposed(by: disposeBag)
-
-        service.getImage(progress: { pro in
-            log.debug("1. \(pro.fractionCompleted)")
-            }).subscribe().disposed(by: disposeBag)
-        service.getImage(progress: { pro in
-            log.debug("2. \(pro.fractionCompleted)")
-        }).subscribe().disposed(by: disposeBag)
-        service.getImage(progress: { pro in
-            log.debug("3. \(pro.fractionCompleted)")
-        }).subscribe().disposed(by: disposeBag)
     }
 }
 

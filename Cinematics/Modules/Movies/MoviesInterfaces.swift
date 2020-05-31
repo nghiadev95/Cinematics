@@ -9,28 +9,11 @@
 //
 
 import UIKit
-import RxSwift
-import RxCocoa
 
-enum Movies {
+protocol MoviesWireframeInterface: WireframeInterface {}
 
-    struct ViewOutput {
-    }
+protocol MoviesViewInterface: ViewInterface {}
 
-    struct ViewInput {
-    }
+protocol MoviesPresenterInterface: PresenterInterface {}
 
-}
-
-protocol MoviesWireframeInterface: WireframeInterface {
-}
-
-protocol MoviesViewInterface: ViewInterface {
-}
-
-protocol MoviesPresenterInterface: PresenterInterface {
-    func configure(with output: Movies.ViewOutput) -> Movies.ViewInput
-}
-
-protocol MoviesInteractorInterface: InteractorInterface {
-}
+protocol MoviesInteractorInterface: InteractorInterface {}

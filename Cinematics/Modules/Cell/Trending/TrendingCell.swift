@@ -14,7 +14,7 @@ class TrendingCell: BaseCollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        imageView.image = R.image.tab_icon_tv_active()!
+        imageView.image = RImage.tab_icon_tv_active()!
     }
 
 }

@@ -25,12 +25,10 @@ final class BootApplicationManager: NSObject, BootApplicationService {
         
         initializers.forEach { $0.performInitialization() }
         
-        NetworkQueueManager.global().config(NetworkQueueConfig.default)
-        
         // MARK: Run app
         
         let initialController = UINavigationController()
-        initialController.setRootWireframe(MainTabBarWireframe())
+        initialController.setRootWireframe(OnboardingWireframe())
 
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = initialController

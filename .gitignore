@@ -17,6 +17,7 @@ DerivedData/
 !default.perspectivev3
 xcuserdata/
 
+
 ## Other
 *.moved-aside
 *.xccheckout
@@ -32,12 +33,15 @@ xcuserdata/
 timeline.xctimeline
 playground.xcworkspace
 
+## Generated Files
+R.generated.swift
+
 # Swift Package Manager
 #
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
-# Packages/
-# Package.pins
-# Package.resolved
+Packages/
+Package.pins
+Package.resolved
 .build/
 
 # CocoaPods
@@ -51,8 +55,7 @@ playground.xcworkspace
 # Carthage
 #
 # Add this line if you want to avoid checking in source code from Carthage dependencies.
-# Carthage/Checkouts
-
+Carthage/Checkouts
 Carthage/Build
 
 # fastlane
@@ -66,5 +69,3 @@ fastlane/report.xml
 fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
-Moviek/Pods
-R.generated.swift

@@ -1,5 +1,5 @@
 //
-//  ProfileViewController.swift
+//  MainTarBarViewController.swift
 //  Cinematics
 //
 //  Created by Nghia Nguyen on 5/31/20.
@@ -10,11 +10,11 @@
 
 import UIKit
 
-final class ProfileViewController: UIViewController {
+final class MainTarBarViewController: UITabBarController {
 
     // MARK: - Public properties -
 
-    var presenter: ProfilePresenterInterface!
+    var presenter: MainTarBarPresenterInterface!
 
     // MARK: - Lifecycle -
 
@@ -26,5 +26,5 @@ final class ProfileViewController: UIViewController {
 
 // MARK: - Extensions -
 
-extension ProfileViewController: ProfileViewInterface {
+extension MainTarBarViewController: MainTarBarViewInterface {
 }

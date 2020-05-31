@@ -9,11 +9,10 @@
 //
 
 import Foundation
-import RxSwift
 import RxCocoa
+import RxSwift
 
 final class MoviesPresenter {
-
     // MARK: - Private properties -
 
     private unowned let view: MoviesViewInterface
@@ -31,10 +30,4 @@ final class MoviesPresenter {
 
 // MARK: - Extensions -
 
-extension MoviesPresenter: MoviesPresenterInterface {
-
-    func configure(with output: Movies.ViewOutput) -> Movies.ViewInput {
-        return Movies.ViewInput()
-    }
-
-}
+extension MoviesPresenter: MoviesPresenterInterface {}

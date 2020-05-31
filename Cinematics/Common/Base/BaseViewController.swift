@@ -17,12 +17,6 @@ class BaseViewController: UIViewController {
     deinit {
         log.verbose("\(self.className) deinit got called!")
     }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupOnDidLoad()
-        executeOnDidLoad()
-    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -30,8 +24,4 @@ class BaseViewController: UIViewController {
             vc.updateNavigationBarVisible()
         }
     }
-
-    func setupOnDidLoad() {}
-
-    func executeOnDidLoad() {}
 }
